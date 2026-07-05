@@ -5,6 +5,8 @@ import Categories from "@/components/home/Categories";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import GallerySection from "@/components/gallery/GallerySection";
 import Testimonials from "@/components/testimonials/Testimonials";
+import ContactSection from "@/components/contact/ContactSection";
+import Footer from "@/components/footer/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +20,8 @@ export default function Home() {
         <FeaturedProducts />
         <GallerySection />
         <Testimonials />
+        <ContactSection />
+        <Footer />
       </main>
     </>
   );
