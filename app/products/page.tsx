@@ -1,13 +1,19 @@
+import PageHeader from "@/components/layout/PageHeader";
+import ProductGrid from "@/components/products/ProductGrid";
+import { products } from "@/data/products";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
+
 export default function ProductsPage() {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-20">
-      <h1 className="text-5xl font-bold">
-        Our Products
-      </h1>
+    <>
+      <PageHeader
+        title="Our Products"
+        subtitle="Discover handcrafted creations made with love."
+      />
 
-      <p className="mt-6 text-gray-600">
-        Browse all handcrafted creations.
-      </p>
-    </main>
+      <main className="max-w-7xl mx-auto px-6 py-16">
+        <ProductGrid products={products} />
+       </main>
+    </>
   );
 }
