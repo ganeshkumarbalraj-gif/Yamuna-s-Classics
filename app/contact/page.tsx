@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
 import PageHeader from "@/components/layout/PageHeader";
-
-export const metadata: Metadata = {
-  title: "Contact | Yamuna's Classics",
-  description: "Get in touch with Yamuna's Classics for handmade gifts, workshops and custom orders.",
-};
+import ContactSection from "@/components/contact/ContactSection";
+import BusinessHours from "@/components/contact/BusinessHours";
+import MapSection from "@/components/contact/MapSection";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -14,24 +17,58 @@ export default function ContactPage() {
         subtitle="We'd love to hear from you."
       />
 
-      <main className="mx-auto max-w-7xl px-6 py-16">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl font-bold">
-            Let's Create Something Beautiful Together
-          </h2>
+      <section className="max-w-6xl mx-auto px-6 py-16">
 
-          <p className="mt-6 text-gray-600">
-            Whether you're looking for handmade gifts, custom orders, or workshop
-            information, we'd be delighted to hear from you.
-          </p>
+        <div className="grid md:grid-cols-2 gap-10">
 
-          <div className="mt-10 space-y-4">
-            <p><strong>📍 Location:</strong> Chennai, India</p>
-            <p><strong>📧 Email:</strong> yamunasclassics@gmail.com</p>
-            <p><strong>📱 WhatsApp:</strong> +91 97909 18673</p>
+          <div className="space-y-8">
+
+            <div>
+              <h2 className="text-3xl font-bold">
+                Get in Touch
+              </h2>
+
+              <p className="text-gray-600 mt-4">
+                Have questions about products or workshops?
+                We'd be happy to help.
+              </p>
+            </div>
+
+            <div className="space-y-5">
+
+              <div className="flex items-center gap-4">
+                <Phone className="text-pink-600" />
+                <span>+91 97909 18673</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <Mail className="text-pink-600" />
+                <span>yamunasclassics@gmail.com</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <MapPin className="text-pink-600" />
+                <span>Chennai, Tamil Nadu</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <MessageCircle className="text-green-600" />
+                <span>WhatsApp Available</span>
+              </div>
+
+            </div>
+
           </div>
+
+          <ContactSection />
+
         </div>
-      </main>
+
+      </section>
+      <section className="max-w-6xl mx-auto px-6 pb-20 space-y-10">
+  <BusinessHours />
+  <MapSection />
+</section>
     </>
   );
 }

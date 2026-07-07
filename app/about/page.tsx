@@ -1,28 +1,24 @@
-import Header from "@/components/layout/Header";
-import Hero from "@/components/home/Hero";
-import AboutSection from "@/components/home/AboutSection";
-import Categories from "@/components/home/Categories";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
-import GallerySection from "@/components/gallery/GallerySection";
-import Testimonials from "@/components/testimonials/Testimonials";
-import ContactSection from "@/components/contact/ContactSection";
-import Footer from "@/components/footer/Footer";
+import PageHeader from "@/components/layout/PageHeader";
+import StorySection from "@/components/about/StorySection";
+import MissionVision from "@/components/about/MissionVision";
+import WhyChooseUs from "@/components/about/WhyChooseUs";
+import MottoBanner from "@/components/about/MottoBanner";
 
-export default function Home() {
+export default function AboutPage() {
   return (
     <>
-      <Header />
+      <PageHeader
+        title="About Us"
+        subtitle="Our story, passion and commitment."
+      />
 
-      <main>
-        <Hero />
-        <AboutSection />
-        <Categories />
-        <FeaturedProducts />
-        <GallerySection />
-        <Testimonials />
-        <ContactSection />
-        <Footer />
-      </main>
+      <StorySection />
+
+      <MissionVision />
+
+      <WhyChooseUs />
+
+      <MottoBanner />
     </>
   );
 }

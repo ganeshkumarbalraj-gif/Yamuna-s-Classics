@@ -1,28 +1,25 @@
-import Header from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
-import AboutSection from "@/components/home/AboutSection";
-import Categories from "@/components/home/Categories";
+import AboutHome from "@/components/home/AboutHome";
+import Stats from "@/components/home/Stats";
+import CraftCategories from "@/components/home/CraftCategories";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import FeaturedWorkshops from "@/components/home/FeaturedWorkshops";
 import GallerySection from "@/components/gallery/GallerySection";
 import Testimonials from "@/components/testimonials/Testimonials";
 import ContactSection from "@/components/contact/ContactSection";
-import Footer from "@/components/footer/Footer";
 
 export default function Home() {
   return (
     <>
-      <Header />
-
-      <main>
-        <Hero />
-        <AboutSection />
-        <Categories />
-        <FeaturedProducts />
-        <GallerySection />
-        <Testimonials />
-        <ContactSection />
-        <Footer />
-      </main>
+      <Hero />
+      <AboutHome />
+      <Stats />
+      <CraftCategories />
+      <FeaturedProducts />
+      <FeaturedWorkshops />     
+      <GallerySection />
+      <Testimonials />
+      <ContactSection />
     </>
   );
 }
