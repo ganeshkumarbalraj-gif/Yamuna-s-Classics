@@ -1,53 +1,105 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import SectionTitle from "@/components/common/SectionTitle";
 
-const galleryImages = [
-  "/gallery/gallery1.jpg",
-  "/gallery/gallery2.jpg",
-  "/gallery/gallery3.jpg",
-  "/gallery/gallery4.jpg",
-  "/gallery/gallery5.jpg",
-  "/gallery/gallery6.jpg",
+const gallery = [
+  {
+    image: "/gallery/gallery1.jpg",
+    title: "Crochet",
+  },
+  {
+    image: "/gallery/gallery2.jpg",
+    title: "Embroidery",
+  },
+  {
+    image: "/gallery/gallery3.jpg",
+    title: "Gift Hamper",
+  },
+  {
+    image: "/gallery/gallery4.jpg",
+    title: "Paper Craft",
+  },
+  {
+    image: "/gallery/gallery5.jpg",
+    title: "Mehendi",
+  },
+  {
+    image: "/gallery/gallery6.jpg",
+    title: "Workshop",
+  },
 ];
 
 export default function GallerySection() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-gradient-to-b from-sky-50 via-white to-pink-50 py-20">
+      <div className="mx-auto max-w-7xl px-6">
 
-        <div className="text-center mb-14">
-          <p className="text-pink-600 font-semibold uppercase tracking-widest">
-            Gallery
-          </p>
+        <SectionTitle
+          eyebrow="Our Gallery"
+          title="Moments of Creativity"
+          description="A glimpse into our handmade creations, workshops and beautiful memories."
+        />
 
-          <h2 className="text-5xl font-bold font-heading mt-3">
-            Our Creative Showcase
-          </h2>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
 
-          <p className="text-gray-600 mt-5 max-w-2xl mx-auto">
-            Every handmade creation reflects passion, patience and creativity.
-          </p>
+          {[
+            "All",
+            "Crochet",
+            "Embroidery",
+            "Mehendi",
+            "Baking",
+            "Paper Craft",
+          ].map((item) => (
+            <button
+              key={item}
+              className="rounded-full border border-purple-200 bg-white px-5 py-2 text-sm font-medium text-purple-700 transition hover:bg-purple-600 hover:text-white"
+            >
+              {item}
+            </button>
+          ))}
+
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden rounded-3xl shadow-lg"
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          {gallery.map((item) => (
+            <div
+              key={item.title}
+              className="group overflow-hidden rounded-3xl bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-2xl"
             >
-              <Image
-                src={image}
-                alt={`Gallery ${index + 1}`}
-                width={600}
-                height={500}
-                className="w-full h-72 object-cover"
-              />
-            </motion.div>
+              <div className="relative aspect-square overflow-hidden">
+
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-110"
+                />
+
+              </div>
+
+              <div className="p-5">
+
+                <h3 className="text-lg font-semibold">
+                  {item.title}
+                </h3>
+
+              </div>
+
+            </div>
           ))}
+
+        </div>
+
+        <div className="mt-12 text-center">
+
+          <Link
+            href="/gallery"
+            className="rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 px-8 py-4 font-semibold text-white transition hover:opacity-90"
+          >
+            View Complete Gallery
+          </Link>
+
         </div>
 
       </div>

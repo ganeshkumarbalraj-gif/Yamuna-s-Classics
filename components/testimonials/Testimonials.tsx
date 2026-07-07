@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Priya S.",
+    name: "Arun B.",
     text: "The crochet workshop was wonderful. I learned so much and enjoyed every session!",
   },
   {
@@ -13,7 +13,7 @@ const testimonials = [
     text: "Beautiful handmade gifts with amazing attention to detail. Highly recommended!",
   },
   {
-    name: "Anitha K.",
+    name: "Lavanya K.",
     text: "Yamuna is an excellent teacher. The workshops are fun and easy to follow.",
   },
 ];

@@ -1,25 +1,36 @@
-import PageHeader from "@/components/layout/PageHeader";
-import ProductGrid from "@/components/products/ProductGrid";
 import { products } from "@/data/products";
-import WhatsAppButton from "@/components/common/WhatsAppButton";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "About | Yamuna's Classics",
-  description: "Learn more about Yamuna's Classics and our handmade creations.",
-};
+import ProductCard from "@/components/products/ProductCard";
+import SectionTitle from "@/components/common/SectionTitle";
 
 export default function ProductsPage() {
   return (
-    <>
-      <PageHeader
-        title="Our Products"
-        subtitle="Discover handcrafted creations made with love."
-      />
+    <main className="bg-gradient-to-b from-pink-50 via-white to-sky-50">
 
-      <main className="max-w-7xl mx-auto px-6 py-16">
-        <ProductGrid products={products} />
-       </main>
-    </>
+      <section className="py-20">
+
+        <div className="mx-auto max-w-7xl px-6">
+
+          <SectionTitle
+            eyebrow="Handcrafted with Love"
+            title="Our Complete Collection"
+            description="Browse our handcrafted creations. Every product is carefully made with creativity, patience and attention to detail."
+          />
+
+          <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
   );
 }
