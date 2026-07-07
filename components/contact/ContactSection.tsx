@@ -32,7 +32,7 @@ export default function ContactSection() {
               <Phone className="text-pink-600 mt-1" />
               <div>
                 <h3 className="font-semibold">Phone</h3>
-                <p>+91 XXXXX XXXXX</p>
+                <p>+91 97909 18673</p>
               </div>
             </div>
 
@@ -40,7 +40,7 @@ export default function ContactSection() {
               <Mail className="text-pink-600 mt-1" />
               <div>
                 <h3 className="font-semibold">Email</h3>
-                <p>hello@yamunasclassics.com</p>
+                <p>yamunasclassics@gmail.com</p>
               </div>
             </div>
 

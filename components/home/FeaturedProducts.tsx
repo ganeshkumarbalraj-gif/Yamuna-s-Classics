@@ -19,7 +19,7 @@ export default function FeaturedProducts() {
           >
             <div className="relative h-56 bg-gray-100">
               <Image
-                src={product.image}
+                src={product.images[0]}
                 alt={product.name}
                 fill
                 className="object-cover"

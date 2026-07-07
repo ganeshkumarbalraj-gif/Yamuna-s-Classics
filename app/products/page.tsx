@@ -2,6 +2,12 @@ import PageHeader from "@/components/layout/PageHeader";
 import ProductGrid from "@/components/products/ProductGrid";
 import { products } from "@/data/products";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About | Yamuna's Classics",
+  description: "Learn more about Yamuna's Classics and our handmade creations.",
+};
 
 export default function ProductsPage() {
   return (
