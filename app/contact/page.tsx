@@ -8,67 +8,89 @@ import {
   MapPin,
   MessageCircle,
 } from "lucide-react";
+import { site } from "@/data/site";
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
-        title="Contact Us"
-        subtitle="We'd love to hear from you."
+        name="Contact Us"
+        subtitle="We&apos;d Love to Hear From You."
       />
 
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <div className="grid gap-12 md:grid-cols-2">
 
-        <div className="grid md:grid-cols-2 gap-10">
+          {/* Contact Information */}
 
-          <div className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold">
+              Get in Touch
+            </h2>
 
-            <div>
-              <h2 className="text-3xl font-bold">
-                Get in Touch
-              </h2>
+            <p className="mt-4 text-gray-600">
+              Have questions about our handmade creations,
+              customised gifts or workshops?
+              We&apos;d love to help.
+            </p>
 
-              <p className="text-gray-600 mt-4">
-                Have questions about products or workshops?
-                We'd be happy to help.
-              </p>
-            </div>
-
-            <div className="space-y-5">
+            <div className="mt-10 space-y-6">
 
               <div className="flex items-center gap-4">
                 <Phone className="text-pink-600" />
-                <span>+91 97909 18673</span>
+
+                <a
+                  href={`tel:${site.phone}`}
+                  className="transition hover:text-pink-600"
+                >
+                  {site.phone}
+                </a>
               </div>
 
               <div className="flex items-center gap-4">
                 <Mail className="text-pink-600" />
-                <span>yamunasclassics@gmail.com</span>
+
+                <a
+                  href={`mailto:${site.email}`}
+                  className="transition hover:text-pink-600"
+                >
+                  {site.email}
+                </a>
               </div>
 
               <div className="flex items-center gap-4">
                 <MapPin className="text-pink-600" />
-                <span>Chennai, Tamil Nadu</span>
+
+                <span>
+                  {site.city}, {site.state}, {site.country}
+                </span>
               </div>
 
               <div className="flex items-center gap-4">
                 <MessageCircle className="text-green-600" />
-                <span>WhatsApp Available</span>
+
+                <a
+                  href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-green-700 hover:underline"
+                >
+                  Chat on WhatsApp
+                </a>
               </div>
 
             </div>
-
           </div>
 
           <ContactSection />
 
         </div>
-
       </section>
-      <section className="max-w-6xl mx-auto px-6 pb-20 space-y-10">
-  <BusinessHours />
-  <MapSection />
-</section>
+
+      <section className="mx-auto max-w-6xl space-y-10 px-6 pb-20">
+        <BusinessHours />
+        <MapSection />
+      </section>
     </>
   );
 }

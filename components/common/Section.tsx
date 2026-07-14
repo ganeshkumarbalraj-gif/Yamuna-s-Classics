@@ -1,14 +1,19 @@
 interface SectionProps {
-  children: React.ReactNode;
+  id?: string;
   className?: string;
+  children: React.ReactNode;
 }
 
 export default function Section({
-  children,
+  id,
   className = "",
+  children,
 }: SectionProps) {
   return (
-    <section className={`py-20 ${className}`}>
+    <section
+      id={id}
+      className={`py-20 lg:py-24 ${className}`}
+    >
       <div className="mx-auto max-w-7xl px-6">
         {children}
       </div>

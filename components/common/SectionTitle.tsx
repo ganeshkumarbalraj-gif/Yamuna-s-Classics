@@ -1,12 +1,12 @@
 interface SectionTitleProps {
   eyebrow: string;
-  title: string;
+  name: string;
   description: string;
 }
 
 export default function SectionTitle({
   eyebrow,
-  title,
+  name,
   description,
 }: SectionTitleProps) {
   return (
@@ -17,7 +17,7 @@ export default function SectionTitle({
       </p>
 
       <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">
-        {title}
+        {name}
       </h2>
 
       <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500" />

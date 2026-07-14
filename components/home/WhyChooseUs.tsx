@@ -1,70 +1,100 @@
-import { Sparkles, HeartHandshake, GraduationCap, Gift } from "lucide-react";
-import SectionTitle from "@/components/common/SectionTitle";
+import {
+  Gift,
+  HeartHandshake,
+  Sparkles,
+  GraduationCap,
+} from "lucide-react";
 
 const features = [
   {
-    icon: Sparkles,
-    title: "Handcrafted Excellence",
+    icon: Gift,
+    title: "Handmade Creations",
     description:
-      "Every creation is handmade with attention to detail and a passion for creativity.",
+      "Every product is lovingly handcrafted with exceptional care and attention to detail.",
   },
   {
-    icon: HeartHandshake,
-    title: "Customised for You",
+    icon: Sparkles,
+    title: "Personalized Designs",
     description:
-      "Products can be personalised to suit your occasion, colours and preferences.",
+      "Custom-made gifts created to suit your colours, style and special occasions.",
   },
   {
     icon: GraduationCap,
     title: "Creative Workshops",
     description:
-      "Learn beautiful crafts through friendly, practical and enjoyable workshops.",
+      "Learn crochet, embroidery, paper crafts and traditional handmade art from experienced instructors.",
   },
   {
-    icon: Gift,
-    title: "Perfect for Gifting",
+    icon: HeartHandshake,
+    title: "Made With Love",
     description:
-      "Unique handmade gifts that create lasting memories for every celebration.",
+      "Each creation reflects passion, creativity and dedication, making every gift truly special.",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-gradient-to-b from-sky-50 via-white to-pink-50 py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-white py-24">
 
-        <SectionTitle
-          eyebrow="Why Choose Us"
-          title="Crafted with Passion, Shared with Love"
-          description="Every product and workshop reflects creativity, quality and the joy of handmade artistry."
-        />
+      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-pink-100/30 blur-3xl" />
 
-        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-100/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
+
+        <div className="mx-auto max-w-3xl text-center">
+
+          <p className="font-semibold uppercase tracking-[0.3em] text-pink-600">
+            Why Choose Us
+          </p>
+
+          <h2 className="mt-5 text-4xl font-bold text-gray-900">
+            Handmade Creations That Tell a Story
+          </h2>
+
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            We believe every handcrafted creation should bring happiness,
+            preserve tradition and become a treasured memory.
+          </p>
+
+        </div>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+
           {features.map((feature) => {
             const Icon = feature.icon;
 
             return (
               <div
                 key={feature.title}
-                className="rounded-3xl bg-white p-8 shadow-md transition hover:-translate-y-2 hover:shadow-xl"
+                className="group rounded-[30px] border border-gray-100 bg-white p-8 shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
               >
-                <div className="mb-6 inline-flex rounded-2xl bg-pink-100 p-4 text-pink-600">
-                  <Icon size={32} />
+
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 transition-all duration-300 group-hover:bg-blue-600">
+
+                  <Icon
+                    size={30}
+                    className="text-blue-600 transition-colors duration-300 group-hover:text-white"
+                  />
+
                 </div>
 
-                <h3 className="text-xl font-semibold">
+                <h3 className="mt-8 text-2xl font-bold text-gray-900">
                   {feature.title}
                 </h3>
 
-                <p className="mt-4 text-gray-600">
+                <p className="mt-5 leading-7 text-gray-600">
                   {feature.description}
                 </p>
+
               </div>
             );
           })}
+
         </div>
 
       </div>
+
     </section>
   );
 }

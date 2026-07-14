@@ -1,28 +1,54 @@
-import { GalleryItem } from "@/types/gallery";
+import { GalleryItem } from "@/types";
 
 export const gallery: GalleryItem[] = [
   {
-    id: "1",
-    title: "Crochet Collection",
+    id: "crochet-bouquet",
+
+    slug: "crochet-bouquet",
+
+    name: "Crochet Bouquet",
+
     category: "Crochet",
+
     image: "/gallery/crochet1.jpg",
+
+    description:
+      "Handcrafted crochet flower bouquet made with premium yarn.",
+
+    featured: true,
   },
+
   {
-    id: "2",
-    title: "Embroidery Art",
-    category: "Embroidery",
-    image: "/gallery/embroidery1.jpg",
+    id: "birthday-cake",
+
+    slug: "birthday-cake",
+
+    name: "Birthday Cake",
+
+    category: "Baking",
+
+    image: "/gallery/cake1.jpg",
+
+    description:
+      "Customized birthday cake designed for special celebrations.",
+
+    featured: true,
   },
+
   {
-    id: "3",
-    title: "Mehendi Design",
+    id: "bridal-mehendi",
+
+    slug: "bridal-mehendi",
+
+    name: "Bridal Mehendi",
+
     category: "Mehendi",
+
     image: "/gallery/mehendi1.jpg",
-  },
-  {
-    id: "4",
-    title: "Paper Flowers",
-    category: "Paper Craft",
-    image: "/gallery/paper1.jpg",
+
+    description:
+      "Traditional bridal mehendi with elegant contemporary patterns.",
+
+    featured: true,
   },
 ];

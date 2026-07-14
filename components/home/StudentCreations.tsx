@@ -27,7 +27,7 @@ export default function StudentCreations() {
 
         <SectionTitle
           eyebrow="Our Students"
-          title="Creations Made During Our Workshops"
+          name="Creations Made During Our Workshops"
           description="Every masterpiece begins with a first stitch, a first brush stroke and a first smile."
         />
 
@@ -44,17 +44,18 @@ export default function StudentCreations() {
                   src={item.image}
                   alt={item.name}
                   fill
+sizes="(max-width:768px) 100vw,
+           (max-width:1200px) 50vw,
+           33vw"
                   className="object-cover"
                 />
 
               </div>
 
               <div className="p-5 text-center">
-
                 <h3 className="font-semibold">
                   {item.name}
                 </h3>
-
               </div>
 
             </div>

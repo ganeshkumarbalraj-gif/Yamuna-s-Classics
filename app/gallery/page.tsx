@@ -1,24 +1,23 @@
 import PageHeader from "@/components/layout/PageHeader";
+import GallerySection from "@/components/gallery/GallerySection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Yamuna's Classics",
-  description: "Learn more about Yamuna's Classics and our handmade creations.",
+  title: "Gallery | Yamuna&apos;s Classics",
+
+  description:
+    "Explore our handmade crochet, embroidery, paper crafts, gift hampers, baking creations and custom handmade products.",
 };
 
 export default function GalleryPage() {
   return (
     <>
       <PageHeader
-        title="Gallery"
-        subtitle="A showcase of handmade creations."
+        name="Gallery"
+        subtitle="Explore our handmade creations and workshop memories."
       />
 
-      <main className="mx-auto max-w-7xl px-6 py-20">
-        <p className="text-lg text-gray-600">
-          Gallery coming in the next step...
-        </p>
-      </main>
+      <GallerySection />
     </>
   );
 }

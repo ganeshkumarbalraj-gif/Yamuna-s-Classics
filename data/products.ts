@@ -1,28 +1,4 @@
-export interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  category: string;
-
-  shortDescription: string;
-  description: string;
-
-  price: number;
-
-  images: string[];
-
-  featured: boolean;
-
-  materials: string[];
-
-  colours: string[];
-
-  deliveryTime: string;
-
-  careInstructions: string[];
-
-  customizable: boolean;
-}
+import { Product } from "@/types";
 
 export const products: Product[] = [
   {
@@ -39,10 +15,12 @@ export const products: Product[] = [
     price: 899,
 
     images: [
-      "/products/crochet-flower.jpg",
+      "/products/crochet/crochet-flower.jpg",
     ],
 
     featured: true,
+    bestSeller: false,
+newArrival: true,
 
     materials: [
       "Premium Cotton Yarn",
@@ -83,10 +61,12 @@ export const products: Product[] = [
     price: 1299,
 
     images: [
-      "/products/embroidery-hoop.jpg",
+      "/products/embroidery/embroidery-hoop.jpg",
     ],
 
     featured: true,
+    bestSeller: false,
+newArrival: true,
 
     materials: [
       "Cotton Fabric",
@@ -122,10 +102,12 @@ export const products: Product[] = [
     price: 1499,
 
     images: [
-      "/products/mehendi.jpg",
+      "/products/mehendi/mehendi.jpg",
     ],
 
     featured: true,
+    bestSeller: false,
+newArrival: true,
 
     materials: [
       "Natural Henna"
@@ -158,10 +140,12 @@ export const products: Product[] = [
     price: 299,
 
     images: [
-      "/products/paper-craft.jpg",
+      "/products/paper-art/paper-craft.jpg",
     ],
 
     featured: false,
+    bestSeller: true,
+newArrival: false,
 
     materials: [
       "Premium Craft Paper",
@@ -195,10 +179,12 @@ export const products: Product[] = [
     price: 1999,
 
     images: [
-      "/products/gift-hamper.jpg",
+      "/products/gift/gift-hamper.jpg",
     ],
 
     featured: true,
+    bestSeller: false,
+newArrival: true,
 
     materials: [
       "Premium Basket",
@@ -233,10 +219,12 @@ export const products: Product[] = [
     price: 1499,
 
     images: [
-      "/products/cake.jpg",
+      "/products/baking/cake.jpg",
     ],
 
     featured: false,
+    bestSeller: true,
+newArrival: false,
 
     materials: [
       "Fresh Ingredients"

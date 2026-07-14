@@ -1,5 +1,5 @@
 import WorkshopCard from "./WorkshopCard";
-import { Workshop } from "@/types/workshop";
+import { Workshop } from "@/types";
 
 interface Props {
   workshops: Workshop[];

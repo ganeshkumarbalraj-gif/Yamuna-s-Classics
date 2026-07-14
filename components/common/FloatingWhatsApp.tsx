@@ -4,7 +4,7 @@ export default function FloatingWhatsApp() {
   const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 
   const message = encodeURIComponent(
-    "Hello! I would like to know more about Yamuna's Classics."
+    "Hello! I would like to know more about Yamuna&apos;s Classics."
   );
 
   return (

@@ -1,108 +1,87 @@
-import Image from "next/image";
-import Link from "next/link";
-import SectionTitle from "@/components/common/SectionTitle";
+"use client";
 
-const gallery = [
-  {
-    image: "/gallery/gallery1.jpg",
-    title: "Crochet",
-  },
-  {
-    image: "/gallery/gallery2.jpg",
-    title: "Embroidery",
-  },
-  {
-    image: "/gallery/gallery3.jpg",
-    title: "Gift Hamper",
-  },
-  {
-    image: "/gallery/gallery4.jpg",
-    title: "Paper Craft",
-  },
-  {
-    image: "/gallery/gallery5.jpg",
-    title: "Mehendi",
-  },
-  {
-    image: "/gallery/gallery6.jpg",
-    title: "Workshop",
-  },
-];
+import { useMemo, useState } from "react";
+
+import GalleryGrid from "./GalleryGrid";
+import GalleryFilters from "./GalleryFilters";
+import GalleryLightbox from "./GalleryLightbox";
+
+import GalleryService from "@/services/GalleryService";
 
 export default function GallerySection() {
+  const [selectedCategory, setSelectedCategory] =
+    useState("All");
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [currentIndex, setCurrentIndex] =
+    useState(0);
+
+  const categories =
+    GalleryService.getCategories();
+
+  const allItems =
+    GalleryService.getAll();
+
+  const filteredItems = useMemo(() => {
+    if (selectedCategory === "All") {
+      return allItems;
+    }
+
+    return allItems.filter(
+      (item) =>
+        item.category === selectedCategory
+    );
+  }, [allItems, selectedCategory]);
+
+  function openLightbox(index: number) {
+    setCurrentIndex(index);
+    setIsOpen(true);
+  }
+
+  function closeLightbox() {
+    setIsOpen(false);
+  }
+
+  function previousImage() {
+    setCurrentIndex((prev) =>
+      prev === 0
+        ? filteredItems.length - 1
+        : prev - 1
+    );
+  }
+
+  function nextImage() {
+    setCurrentIndex((prev) =>
+      prev === filteredItems.length - 1
+        ? 0
+        : prev + 1
+    );
+  }
+
   return (
-    <section className="bg-gradient-to-b from-sky-50 via-white to-pink-50 py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="mx-auto max-w-7xl px-6 py-16">
 
-        <SectionTitle
-          eyebrow="Our Gallery"
-          title="Moments of Creativity"
-          description="A glimpse into our handmade creations, workshops and beautiful memories."
-        />
+      <GalleryFilters
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
 
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+      <GalleryGrid
+        items={filteredItems}
+        onImageClick={openLightbox}
+      />
 
-          {[
-            "All",
-            "Crochet",
-            "Embroidery",
-            "Mehendi",
-            "Baking",
-            "Paper Craft",
-          ].map((item) => (
-            <button
-              key={item}
-              className="rounded-full border border-purple-200 bg-white px-5 py-2 text-sm font-medium text-purple-700 transition hover:bg-purple-600 hover:text-white"
-            >
-              {item}
-            </button>
-          ))}
+      <GalleryLightbox
+        items={filteredItems}
+        currentIndex={currentIndex}
+        isOpen={isOpen}
+        onClose={closeLightbox}
+        onPrevious={previousImage}
+        onNext={nextImage}
+      />
 
-        </div>
-
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-          {gallery.map((item) => (
-            <div
-              key={item.title}
-              className="group overflow-hidden rounded-3xl bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-2xl"
-            >
-              <div className="relative aspect-square overflow-hidden">
-
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-110"
-                />
-
-              </div>
-
-              <div className="p-5">
-
-                <h3 className="text-lg font-semibold">
-                  {item.title}
-                </h3>
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
-
-        <div className="mt-12 text-center">
-
-          <Link
-            href="/gallery"
-            className="rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 px-8 py-4 font-semibold text-white transition hover:opacity-90"
-          >
-            View Complete Gallery
-          </Link>
-
-        </div>
-
-      </div>
     </section>
   );
 }

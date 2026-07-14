@@ -1,122 +1,152 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import Button from "@/components/ui/Button";
+import FloatingBadge from "@/components/common/FloatingBadge";
+import { homeData } from "@/data/home";
+import { site } from "@/data/site";
+import FadeIn from "@/components/animations/FadeIn";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-white to-pink-50">
+    <section className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-emerald-50">
 
-      {/* Decorative Blurs */}
-      <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-sky-200/30 blur-3xl" />
-      <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-pink-200/30 blur-3xl" />
+      {/* Background Decorations */}
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
+      <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-pink-200/30 blur-3xl" />
 
-        {/* Left Content */}
+      <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-emerald-200/30 blur-3xl" />
 
-        <div>
+      <div className="mx-auto grid max-w-7xl items-center gap-20 px-6 py-24 lg:grid-cols-2">
 
-          <span className="rounded-full bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-700">
-            Handmade • Creative • Customised
+        {/* LEFT */}
+
+        <FadeIn>
+
+          <span className="inline-block rounded-full border border-pink-200 bg-white px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm">
+            {homeData.hero.badge}
           </span>
 
-          <h1 className="mt-8 text-5xl font-bold leading-tight text-gray-800 lg:text-6xl">
-            Beautiful Handmade Creations
-            <span className="block text-purple-600">
-              Crafted with Love
-            </span>
+          <h1 className="mt-8 text-5xl font-extrabold leading-tight text-gray-900 lg:text-6xl">
+            {homeData.hero.name}
           </h1>
 
           <p className="mt-8 max-w-xl text-lg leading-8 text-gray-600">
-            Welcome to <strong>Yamuna's Classics</strong>, where creativity
-            comes alive through handcrafted gifts, crochet, embroidery,
-            customised hampers, baking and inspiring workshops.
+            {homeData.hero.subtitle}
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          {/* Buttons */}
 
-            <Link
-              href="/products"
-              className="rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 px-8 py-4 font-semibold text-white shadow-lg transition hover:scale-105"
-            >
-              Explore Products
-            </Link>
+          <div className="mt-10 flex flex-wrap gap-5">
 
-            <Link
-              href="/workshops"
-              className="rounded-xl border-2 border-purple-500 px-8 py-4 font-semibold text-purple-700 transition hover:bg-purple-50"
+            <Button
+              href={homeData.hero.primaryButton.href}
             >
-              Join Workshops
-            </Link>
+              {homeData.hero.primaryButton.text}
+            </Button>
+
+            <Button
+              href={homeData.hero.secondaryButton.href}
+              variant="secondary"
+            >
+              {homeData.hero.secondaryButton.text}
+            </Button>
 
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-8 text-sm text-gray-600">
+          {/* Statistics */}
 
-            <div>
-              <p className="text-2xl font-bold text-purple-700">100%</p>
-              Handmade
-            </div>
+          <div className="mt-16 grid grid-cols-2 gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-xl md:grid-cols-4">
 
-            <div>
-              <p className="text-2xl font-bold text-sky-700">Custom</p>
-              Orders Welcome
-            </div>
+            <Stat
+              value={site.stats.handmadeProducts}
+              label="Products"
+            />
 
-            <div>
-              <p className="text-2xl font-bold text-pink-700">Workshops</p>
-              For All Ages
-            </div>
+            <Stat
+              value={site.stats.happyCustomers}
+              label="Happy Customers"
+            />
+
+            <Stat
+              value={site.stats.workshopStudents}
+              label="Students"
+            />
+
+            <Stat
+              value={site.stats.yearsExperience}
+              label="Years"
+            />
 
           </div>
 
-        </div>
+        </FadeIn>
 
-        {/* Right Side */}
+        {/* RIGHT */}
 
-        <div className="relative">
+        <FadeIn delay={0.2}>
 
-          <div className="grid grid-cols-2 gap-5">
+          <div className="relative flex justify-center">
 
-            <div className="overflow-hidden rounded-3xl shadow-xl">
+            <div className="overflow-hidden rounded-[40px] border border-white bg-white p-4 shadow-2xl">
+
               <Image
-                src="/hero/crochet.jpg"
-                alt="Crochet"
-                width={500}
-                height={600}
-                className="h-full w-full object-cover"
+                src="/about/yamuna.jpg"
+                alt="Founder"
+                width={520}
+                height={650}
+                priority
+                className="rounded-[32px] object-cover"
               />
+
             </div>
 
-            <div className="space-y-5">
+            <div className="absolute -left-8 top-10 hidden lg:block">
 
-              <div className="overflow-hidden rounded-3xl shadow-xl">
-                <Image
-                  src="/hero/embroidery.jpg"
-                  alt="Embroidery"
-                  width={500}
-                  height={300}
-                  className="object-cover"
-                />
-              </div>
+              <FloatingBadge
+                name={site.stats.workshopStudents}
+                subtitle="Students Trained"
+              />
 
-              <div className="overflow-hidden rounded-3xl shadow-xl">
-                <Image
-                  src="/hero/mehendi.jpg"
-                  alt="Mehendi"
-                  width={500}
-                  height={300}
-                  className="object-cover"
-                />
-              </div>
+            </div>
+
+            <div className="absolute -right-8 bottom-10 hidden lg:block">
+
+              <FloatingBadge
+                name={site.stats.handmade}
+                subtitle="Crafted with Love"
+              />
 
             </div>
 
           </div>
 
-        </div>
+        </FadeIn>
 
       </div>
 
     </section>
+  );
+}
+
+function Stat({
+  value,
+  label,
+}: {
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="text-center">
+
+      <h3 className="text-3xl font-bold text-emerald-600">
+        {value}
+      </h3>
+
+      <p className="mt-2 text-sm text-gray-600">
+        {label}
+      </p>
+
+    </div>
   );
 }

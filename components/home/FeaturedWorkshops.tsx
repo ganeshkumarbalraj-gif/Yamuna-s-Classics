@@ -1,88 +1,116 @@
 import Image from "next/image";
-import Link from "next/link";
-import { workshops } from "@/data/workshops";
+import Button from "@/components/ui/Button";
 import SectionTitle from "@/components/common/SectionTitle";
+import { workshops } from "@/data/workshops";
 
 export default function FeaturedWorkshops() {
+  const featured = workshops.slice(0, 2);
+
   return (
-    <section className="bg-gradient-to-br from-sky-50 via-white to-purple-50 py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 py-24">
+
+      {/* Decorative Background */}
+
+      <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-sky-100/40 blur-3xl" />
+
+      <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-purple-100/40 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
 
         <SectionTitle
-  eyebrow="Learn With Us"
-  title="Creative Workshops"
-  description="Learn timeless handmade skills through enjoyable and inspiring workshops for all ages."
-/>
+          eyebrow="Creative Learning"
+          name="Featured Workshops"
+          description="Discover the joy of creating beautiful handmade crafts through inspiring workshops designed for beginners and enthusiasts alike."
+        />
 
-        <div className="grid gap-10 md:grid-cols-2">
+        <div className="mt-16 grid gap-10 lg:grid-cols-2">
 
-          {workshops.slice(0, 2).map((workshop) => (
+          {featured.map((workshop) => (
 
-            <div
+            <article
               key={workshop.slug}
-              className="overflow-hidden rounded-3xl bg-white shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="group overflow-hidden rounded-[32px] border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
             >
 
-              <div className="relative h-72">
+              {/* IMAGE */}
+
+              <div className="relative h-80 overflow-hidden">
 
                 <Image
-                  src={workshop.image}
-                  alt={workshop.title}
+                  src={
+                    workshop.images[0] ||
+                    "/images/placeholder-workshop.jpg"
+                  }
+                  alt={workshop.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+
+                <div className="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-gray-700 backdrop-blur">
+                  {workshop.level}
+                </div>
 
               </div>
 
+              {/* CONTENT */}
+
               <div className="p-8">
 
-                <span className="rounded-full bg-sky-100 px-4 py-1 text-sm font-medium text-sky-700">
-                  {workshop.level}
-                </span>
-
-                <h3 className="mt-5 text-2xl font-semibold">
-                  {workshop.title}
+                <h3 className="text-3xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
+                  {workshop.name}
                 </h3>
 
-                <p className="mt-4 text-gray-600">
+                <p className="mt-5 leading-8 text-gray-600">
                   {workshop.description}
                 </p>
 
-                <div className="mt-8 flex items-center justify-between">
+                <div className="my-8 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
-                  <span className="font-semibold text-purple-700">
-                    {workshop.duration}
-                  </span>
+                <div className="flex items-center justify-between">
 
-                  <Link
+                  <div>
+
+                    <p className="text-sm text-gray-500">
+                      Duration
+                    </p>
+
+                    <p className="font-semibold text-emerald-600">
+                      {workshop.duration}
+                    </p>
+
+                  </div>
+
+                  <Button
                     href={`/workshops/${workshop.slug}`}
-                    className="rounded-xl bg-gradient-to-r from-sky-500 to-purple-500 px-5 py-3 text-white transition hover:opacity-90"
                   >
                     Learn More
-                  </Link>
+                  </Button>
 
                 </div>
 
               </div>
 
-            </div>
+            </article>
 
           ))}
 
         </div>
 
-        <div className="mt-14 text-center">
+        <div className="mt-16 text-center">
 
-          <Link
+          <Button
             href="/workshops"
-            className="rounded-xl border-2 border-sky-500 px-8 py-4 font-semibold text-sky-700 transition hover:bg-sky-50"
+            variant="secondary"
           >
             View All Workshops
-          </Link>
+          </Button>
 
         </div>
 
       </div>
+
     </section>
   );
 }

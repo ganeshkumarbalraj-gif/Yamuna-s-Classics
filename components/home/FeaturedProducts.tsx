@@ -1,33 +1,50 @@
 import SectionTitle from "@/components/common/SectionTitle";
 import ProductCard from "@/components/products/ProductCard";
+import Button from "@/components/ui/Button";
+
 import { products } from "@/data/products";
-import Link from "next/link";
 
 export default function FeaturedProducts() {
   const featured = products.filter((product) => product.featured);
 
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white py-24"
+      aria-labelledby="featured-products-heading"
+    >
+      {/* Background Decorations */}
+
+      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-pink-100/40 blur-3xl" />
+
+      <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-emerald-100/40 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
         <SectionTitle
-          eyebrow="Our Creations"
-          title="Featured Handmade Collection"
-          description="Each creation is lovingly handcrafted with creativity, patience and attention to every little detail."
+          eyebrow="Handcrafted Collection"
+          name="Featured Handmade Creations"
+          description="Every creation is lovingly handcrafted with creativity, patience, and attention to every little detail."
         />
 
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <h2 id="featured-products-heading" className="sr-only">
+          Featured Handmade Products
+        </h2>
+
+        <div className="mt-16 grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {featured.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+            />
           ))}
         </div>
 
-        <div className="mt-14 text-center">
-          <Link
+        <div className="mt-16 flex justify-center">
+          <Button
             href="/products"
-            className="rounded-xl border-2 border-purple-500 px-8 py-4 font-semibold text-purple-700 transition hover:bg-purple-50"
+            variant="primary"
           >
-            View All Products
-          </Link>
+            Explore All Products
+          </Button>
         </div>
       </div>
     </section>
