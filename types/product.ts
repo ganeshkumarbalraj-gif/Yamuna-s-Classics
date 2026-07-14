@@ -1,26 +1,33 @@
-export interface Product {
-  id: string;
+import { BaseEntity, SeoData } from "./common";
+
+export interface Product extends BaseEntity {
   name: string;
-  slug: string;
 
   category: string;
 
   shortDescription: string;
-  description: string;
 
-  images: string[];
+  description: string;
 
   price?: number;
 
+  images: string[];
+
+  materials: string[];
+
+  colours: string[];
+
+  customizable: boolean;
+
+  deliveryTime: string;
+
+  careInstructions: string[];
+
   featured: boolean;
 
-  inStock: boolean;
+  bestSeller: boolean;
 
-  tags: string[];
+  newArrival: boolean;
 
-  rating?: number;
-
-  reviewCount?: number;
-
-  customizable?: boolean;
+  seo?: SeoData;
 }

@@ -1,65 +1,167 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
-import { Product } from "@/data/products";
+import { Product } from "@/types";
+import { site } from "@/data/site";
+
+import ProductBadge from "@/components/common/ProductBadge";
+import StarRating from "@/components/common/StarRating";
+import WishlistButton from "@/components/common/WishlistButton";
+import Button from "@/components/ui/Button";
 
 interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({
+  product,
+}: ProductCardProps) {
+  const image =
+    product.images.length > 0
+      ? product.images[0]
+      : "/images/placeholder-product.jpg";
+
+  const whatsappMessage = encodeURIComponent(
+    `Hello Yamuna&apos;s Classics! I'm interested in "${product.name}". Please share more details.`
+  );
+
+  const whatsappLink = `https://wa.me/${site.whatsapp.replace(
+    /\D/g,
+    ""
+  )}?text=${whatsappMessage}`;
+
   return (
-    <div className="group overflow-hidden rounded-3xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <article className="group flex h-full flex-col overflow-hidden rounded-[32px] border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+
+      {/* IMAGE */}
+
       <div className="relative aspect-square overflow-hidden">
+
         <Image
-          src={product.images[0]}
+          src={image}
           alt={product.name}
           fill
-          className="object-cover transition duration-500 group-hover:scale-110"
+          sizes="(max-width:768px) 100vw,
+                 (max-width:1200px) 50vw,
+                 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+        {/* Wishlist */}
+
+        <div className="absolute right-4 top-4">
+          <WishlistButton
+            productId={product.id}
+          />
+        </div>
+
+        {/* Category */}
+
+        <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold text-gray-700 backdrop-blur">
+          {product.category}
+        </div>
+
+        {/* Badges */}
+
+        <div className="absolute left-4 top-4 flex flex-col gap-2">
+
+          {product.featured && (
+            <ProductBadge>
+              Featured
+            </ProductBadge>
+          )}
+
+          {product.bestSeller && (
+            <ProductBadge>
+              Best Seller
+            </ProductBadge>
+          )}
+
+          {product.newArrival && (
+            <ProductBadge>
+              New Arrival
+            </ProductBadge>
+          )}
+
+        </div>
+
       </div>
 
-      <div className="p-6">
-        <span className="rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-700">
-          {product.category}
-        </span>
+      {/* CONTENT */}
 
-        <h3 className="mt-4 text-2xl font-semibold">
+      <div className="flex flex-1 flex-col p-7">
+
+        <StarRating />
+
+        <h3 className="mt-4 text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
           {product.name}
         </h3>
-<div className="mt-3 flex flex-wrap gap-2">
 
-  <span className="rounded-full bg-sky-100 px-3 py-1 text-xs font-medium text-sky-700">
-    Handmade
-  </span>
-
-  <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-700">
-    Customisable
-  </span>
-
-</div>
-        <p className="mt-3 text-gray-600 line-clamp-3">
-          {product.description}
+        <p className="mt-4 flex-1 leading-7 text-gray-600">
+          {product.shortDescription}
         </p>
 
-        <div className="mt-6 flex items-center justify-between">
-          <div>
-  <p className="text-xs uppercase tracking-wide text-gray-500">
-    Starting From
-  </p>
+        {/* Product Features */}
 
-  <p className="text-2xl font-bold text-purple-700">
-    ₹ {product.price}
-  </p>
-</div>
+        <div className="mt-6 flex flex-wrap gap-2">
 
-          <Link
+          <ProductBadge>
+            Handmade
+          </ProductBadge>
+
+          {product.customizable && (
+            <ProductBadge>
+              Customizable
+            </ProductBadge>
+          )}
+
+          <ProductBadge>
+            Gift Ready
+          </ProductBadge>
+
+        </div>
+
+        <div className="my-7 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
+        {/* Price */}
+
+        <div>
+
+          <p className="text-sm text-gray-500">
+            Starting From
+          </p>
+
+          <p className="mt-1 text-3xl font-bold text-emerald-600">
+            ₹{product.price}
+          </p>
+
+        </div>
+
+        {/* Buttons */}
+
+        <div className="mt-8 grid grid-cols-2 gap-3">
+
+          <Button
             href={`/products/${product.slug}`}
-            className="rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 px-5 py-3 text-white transition hover:opacity-90"
           >
             View Details
-          </Link>
+          </Button>
+
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-xl border border-green-600 bg-white px-5 py-3 font-semibold text-green-700 transition-all duration-300 hover:-translate-y-1 hover:bg-green-600 hover:text-white hover:shadow-xl"
+          >
+            WhatsApp
+          </a>
+
         </div>
+
       </div>
-    </div>
+
+    </article>
   );
 }

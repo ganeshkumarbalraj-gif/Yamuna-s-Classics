@@ -3,42 +3,42 @@ import SectionTitle from "@/components/common/SectionTitle";
 
 const crafts = [
   {
-    title: "Crochet",
+    name: "Crochet",
     description: "Handmade flowers, toys, bags and home décor.",
     href: "/products?category=crochet",
     color: "from-pink-500 to-rose-400",
     emoji: "🧶",
   },
   {
-    title: "Embroidery",
+    name: "Embroidery",
     description: "Traditional and modern embroidery creations.",
     href: "/products?category=embroidery",
     color: "from-purple-500 to-fuchsia-500",
     emoji: "🪡",
   },
   {
-    title: "Mehendi",
+    name: "Mehendi",
     description: "Elegant bridal and festive mehendi designs.",
     href: "/gallery?category=mehendi",
     color: "from-emerald-500 to-green-400",
     emoji: "🌿",
   },
   {
-    title: "Paper Crafts",
+    name: "Paper Crafts",
     description: "Creative handmade paper decorations and gifts.",
     href: "/products?category=papercraft",
     color: "from-sky-500 to-cyan-400",
     emoji: "🎨",
   },
   {
-    title: "Baking",
+    name: "Baking",
     description: "Homemade cakes, chocolates and festive treats.",
     href: "/products?category=baking",
     color: "from-orange-400 to-amber-400",
     emoji: "🍰",
   },
   {
-    title: "Workshops",
+    name: "Workshops",
     description: "Learn beautiful crafts from experienced instructors.",
     href: "/workshops",
     color: "from-indigo-500 to-sky-500",
@@ -53,7 +53,7 @@ export default function CraftCategories() {
 
         <SectionTitle
   eyebrow="Explore"
-  title="Our Creative World"
+  name="Our Creative World"
   description="Browse our handcrafted collections and discover workshops that celebrate creativity."
 />
 
@@ -61,7 +61,7 @@ export default function CraftCategories() {
 
           {crafts.map((craft) => (
             <Link
-              key={craft.title}
+              key={craft.name}
               href={craft.href}
               className="group rounded-3xl border border-gray-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
@@ -72,7 +72,7 @@ export default function CraftCategories() {
               </div>
 
               <h3 className="mb-3 text-2xl font-semibold text-gray-900">
-                {craft.title}
+                {craft.name}
               </h3>
 
               <p className="mb-6 text-gray-600">

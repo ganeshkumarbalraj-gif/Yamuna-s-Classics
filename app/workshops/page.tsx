@@ -4,16 +4,16 @@ import WorkshopGrid from "@/components/workshops/WorkshopGrid";
 import { workshops } from "@/data/workshops";
 
 export const metadata: Metadata = {
-  title: "Workshops | Yamuna's Classics",
+  title: "Workshops | Yamuna&apos;s Classics",
   description:
-    "Join creative workshops at Yamuna's Classics and learn crochet, embroidery, and other handmade crafts.",
+    "Join creative workshops at Yamuna&apos;s Classics and learn crochet, embroidery, and other handmade crafts.",
 };
 
 export default function WorkshopsPage() {
   return (
     <>
       <PageHeader
-        title="Creative Workshops"
+        name="Creative Workshops"
         subtitle="Learn beautiful handmade crafts from Yamuna."
       />
 

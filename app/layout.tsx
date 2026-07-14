@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Poppins, Geist } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
 import Header from "@/components/layout/Header";
-import Footer from "@/components/footer/Footer";
-import WhatsAppButton from "@/components/common/WhatsAppButton";
+import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/common/FloatingWhatsApp";
 
 const geist = Geist({
@@ -13,24 +11,24 @@ const geist = Geist({
   variable: "--font-sans",
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-heading",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-body",
-});
-
 export const metadata: Metadata = {
   title: {
-    default: "Yamuna's Classics",
-    template: "%s | Yamuna's Classics",
+    default: "Yamuna&apos;s Classics",
+    template: "%s | Yamuna&apos;s Classics",
   },
+
   description:
-    "Handcrafted gifts, crochet, embroidery, workshops and creative learning.",
+    "Handmade crochet, embroidery, paper crafts, workshops and personalized gifts.",
+
+  metadataBase: new URL("https://www.yamunasclassics.com"),
+
+  manifest: "/manifest.json",
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -39,16 +37,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className={`${playfair.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      className={geist.variable}
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <Header />
 
         <main>{children}</main>
 
         <Footer />
 
-        <WhatsAppButton />
-<FloatingWhatsApp />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

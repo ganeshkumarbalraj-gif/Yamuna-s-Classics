@@ -1,18 +1,25 @@
-export interface Workshop {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
+import { BaseEntity, SeoData } from "./common";
 
-  image: string;
+export interface Workshop extends BaseEntity {
+  name: string;
+
+  shortDescription: string;
+
+  description: string;
 
   duration: string;
 
-  level: "Beginner" | "Intermediate" | "Advanced";
+  level: string;
 
-  mode: "Online" | "Offline";
+  images: string[];
 
-  seats: number;
+  includes: string[];
 
-  featured: boolean;
+  materialsProvided: boolean;
+
+  certificate: boolean;
+
+  ageGroup: string;
+
+  seo?: SeoData;
 }

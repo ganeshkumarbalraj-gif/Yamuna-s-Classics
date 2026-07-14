@@ -8,6 +8,11 @@ import {
   Heart,
 } from "lucide-react";
 
+import {
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -23,12 +28,13 @@ export default function Footer() {
           <div>
 
             <Image
-              src="/logo/yamunas-classics-logo.png"
-              alt="Yamuna's Classics"
-              width={180}
-              height={180}
-              className="mb-5"
-            />
+  src="/logo/yamunas-classics-logo.png"
+  alt="Yamuna&apos;s Classics Logo"
+  width={160}
+  height={80}
+  style={{ width: "auto", height: "80px" }}
+  priority
+/>
 
             <p className="leading-7 text-gray-600">
               Handmade creations crafted with love, creativity and passion.
@@ -94,7 +100,25 @@ export default function Footer() {
             <h3 className="mb-5 text-xl font-semibold">
               Handmade With Love
             </h3>
+<div className="mt-6 flex gap-4">
+  <a
+    href="https://www.instagram.com/yamuna.s2023"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-pink-600 hover:text-pink-700"
+  >
+     <FaInstagram size={24} />
+  </a>
 
+  <a
+    href="https://www.youtube.com/@YamunasClassics"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-red-600 hover:text-red-700"
+  >
+     <FaYoutube size={24} />
+  </a>
+</div>
             <p className="leading-7 text-gray-600">
               Every creation is thoughtfully designed and handcrafted,
               making every gift unique and memorable.
@@ -111,7 +135,7 @@ export default function Footer() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
 
           <p className="text-sm text-gray-600">
-            © {year} Yamuna's Classics. All Rights Reserved.
+            © {year} - Yamuna&apos;s Classics. All Rights Reserved.
           </p>
 
           <p className="flex items-center gap-2 text-sm text-gray-600">

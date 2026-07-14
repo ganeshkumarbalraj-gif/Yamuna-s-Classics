@@ -1,0 +1,17 @@
+{
+  "name": "Yamuna&apos;s Classics",
+  "short_name": "Yamuna&apos;s",
+  "description": "Handmade crafts, workshops and creative learning.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ec4899",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo/yamunas-classics-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,31 +1,9 @@
-export interface Workshop {
-  id: string;
-  title: string;
-  slug: string;
-
-  shortDescription: string;
-  description: string;
-
-  duration: string;
-  level: string;
-
-  image: string;
-
-  featured: boolean;
-
-  includes: string[];
-
-  materialsProvided: boolean;
-
-  certificate: boolean;
-
-  ageGroup: string;
-}
+import { Workshop } from "@/types";
 
 export const workshops: Workshop[] = [
   {
     id: "1",
-    title: "Crochet for Beginners",
+    name: "Crochet for Beginners",
     slug: "crochet-for-beginners",
 
     shortDescription:
@@ -38,7 +16,9 @@ export const workshops: Workshop[] = [
 
     level: "Beginner",
 
-    image: "/workshops/crochet.jpg",
+    images: [
+  "/workshops/crochet.jpg",
+],
 
     featured: true,
 
@@ -46,7 +26,7 @@ export const workshops: Workshop[] = [
       "Basic Stitches",
       "Reading Patterns",
       "Hands-on Practice",
-      "Mini Project"
+      "Mini Project",
     ],
 
     materialsProvided: true,
@@ -58,7 +38,7 @@ export const workshops: Workshop[] = [
 
   {
     id: "2",
-    title: "Embroidery Workshop",
+    name: "Embroidery Workshop",
     slug: "embroidery-workshop",
 
     shortDescription:
@@ -71,14 +51,16 @@ export const workshops: Workshop[] = [
 
     level: "Intermediate",
 
-    image: "/workshops/embroidery.jpg",
+    images: [
+  "/workshops/embroidery.jpg",
+],
 
     featured: true,
 
     includes: [
       "Basic Stitches",
       "Floral Designs",
-      "Hoop Finishing"
+      "Hoop Finishing",
     ],
 
     materialsProvided: true,
@@ -90,7 +72,7 @@ export const workshops: Workshop[] = [
 
   {
     id: "3",
-    title: "Paper Craft Workshop",
+    name: "Paper Craft Workshop",
     slug: "paper-craft-workshop",
 
     shortDescription:
@@ -103,20 +85,26 @@ export const workshops: Workshop[] = [
 
     level: "Beginner",
 
-    image: "/gallery/paper1.jpg",
+    images: [
+  "/workshops/paper1.jpg",
+],
 
-    featured: false,
+    featured: true,
 
     includes: [
       "Greeting Cards",
       "Paper Flowers",
-      "Decorative Crafts"
+      "Decorative Crafts",
     ],
 
     materialsProvided: true,
 
-    certificate: false,
+    certificate: true,
 
-    ageGroup: "10+ Years",
-  }
+    ageGroup: "12+ Years",
+  },
 ];
+
+export function getWorkshopBySlug(slug: string): Workshop | undefined {
+  return workshops.find((workshop) => workshop.slug === slug);
+}

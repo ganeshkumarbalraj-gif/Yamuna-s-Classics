@@ -1,7 +1,12 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { products } from "@/data/products";
-import WhatsAppButton from "@/components/common/WhatsAppButton";
+import type { Metadata } from "next";
+import ProductSchema from "@/components/seo/ProductSchema";
+import ProductGallery from "@/components/products/ProductGallery";
+import ProductInfo from "@/components/products/ProductInfo";
+import RelatedProducts from "@/components/products/RelatedProducts";
+
+import ProductService from "@/services/ProductService";
+import { site } from "@/data/site";
 
 interface ProductPageProps {
   params: Promise<{
@@ -9,158 +14,142 @@ interface ProductPageProps {
   }>;
 }
 
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const product = ProductService.getBySlug(slug);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  const url = `https://www.yamunasclassics.com/products/${product.slug}`;
+
+  return {
+    title: product.name,
+
+    description: product.shortDescription,
+
+    keywords: [
+      product.name,
+      product.category,
+      "Handmade",
+      "Crochet",
+      "Embroidery",
+      "Paper Crafts",
+      "Customized Gifts",
+      "Yamuna&apos;s Classics",
+      "Chennai",
+      "India",
+    ],
+
+    alternates: {
+      canonical: url,
+    },
+
+    openGraph: {
+      title: product.name,
+      description: product.shortDescription,
+      url,
+      siteName: site.name,
+      type: "website",
+
+      images: [
+        {
+          url: product.images[0],
+          width: 1200,
+          height: 630,
+          alt: product.name,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.shortDescription,
+      images: [product.images[0]],
+    },
+  };
+}
+
 export default async function ProductPage({
   params,
 }: ProductPageProps) {
   const { slug } = await params;
 
-  const product = products.find((p) => p.slug === slug);
+  const product = ProductService.getBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
   return (
-    <main className="bg-gradient-to-b from-pink-50 via-white to-sky-50">
+    <main className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-pink-50">
+<ProductSchema product={product} />
+      {/* Breadcrumb */}
 
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 pt-10">
+
+        <nav
+          aria-label="Breadcrumb"
+          className="text-sm text-gray-500"
+        >
+          <ol className="flex flex-wrap items-center">
+
+            <li>Home</li>
+
+            <li className="mx-2">/</li>
+
+            <li>Products</li>
+
+            <li className="mx-2">/</li>
+
+            <li
+              aria-current="page"
+              className="font-medium text-gray-700"
+            >
+              {product.name}
+            </li>
+
+          </ol>
+        </nav>
+
+      </section>
+
+      {/* Product */}
+
+      <section className="mx-auto max-w-7xl px-6 py-10">
 
         <div className="grid gap-14 lg:grid-cols-2">
 
-          {/* Product Image */}
+          <ProductGallery
+            images={product.images}
+            productName={product.name}
+          />
 
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-lg">
-
-            <Image
-              src={product.images[0]}
-              alt={product.name}
-              fill
-              className="object-cover"
-            />
-
-          </div>
-
-          {/* Product Details */}
-
-          <div>
-
-            <span className="rounded-full bg-pink-100 px-4 py-2 text-sm font-medium text-pink-700">
-              {product.category}
-            </span>
-
-            <h1 className="mt-5 text-5xl font-bold text-gray-800">
-              {product.name}
-            </h1>
-
-            <p className="mt-3 text-lg text-gray-600">
-              {product.shortDescription}
-            </p>
-
-            <div className="mt-8">
-
-              <p className="text-sm uppercase tracking-wide text-gray-500">
-                Starting From
-              </p>
-
-              <p className="text-4xl font-bold text-purple-700">
-                ₹ {product.price}
-              </p>
-
-            </div>
-
-            <p className="mt-8 leading-8 text-gray-700">
-              {product.description}
-            </p>
-
-            {/* Materials */}
-
-            <div className="mt-10">
-
-              <h2 className="mb-4 text-xl font-semibold">
-                Materials
-              </h2>
-
-              <ul className="space-y-2">
-
-                {product.materials.map((item) => (
-                  <li key={item}>• {item}</li>
-                ))}
-
-              </ul>
-
-            </div>
-
-            {/* Colours */}
-
-            <div className="mt-10">
-
-              <h2 className="mb-4 text-xl font-semibold">
-                Available Colours
-              </h2>
-
-              <div className="flex flex-wrap gap-2">
-
-                {product.colours.map((colour) => (
-                  <span
-                    key={colour}
-                    className="rounded-full bg-sky-100 px-4 py-2 text-sm text-sky-700"
-                  >
-                    {colour}
-                  </span>
-                ))}
-
-              </div>
-
-            </div>
-
-            {/* Delivery */}
-
-            <div className="mt-10 rounded-2xl bg-white p-6 shadow">
-
-              <div className="space-y-3">
-
-                <p>
-                  <strong>Delivery:</strong> {product.deliveryTime}
-                </p>
-
-                <p>
-                  <strong>Customisable:</strong>{" "}
-                  {product.customizable ? "Yes" : "No"}
-                </p>
-
-              </div>
-
-            </div>
-
-            {/* Care */}
-
-            <div className="mt-10">
-
-              <h2 className="mb-4 text-xl font-semibold">
-                Care Instructions
-              </h2>
-
-              <ul className="space-y-2">
-
-                {product.careInstructions.map((item) => (
-                  <li key={item}>• {item}</li>
-                ))}
-
-              </ul>
-
-            </div>
-
-            <div className="mt-12">
-
-              <WhatsAppButton subject={product.name} />
-
-            </div>
-
-          </div>
+          <ProductInfo
+            product={product}
+          />
 
         </div>
 
-      </div>
+      </section>
+
+      {/* Related Products */}
+
+      <section className="mx-auto max-w-7xl px-6 pb-20">
+
+        <RelatedProducts
+          product={product}
+        />
+
+      </section>
 
     </main>
   );
