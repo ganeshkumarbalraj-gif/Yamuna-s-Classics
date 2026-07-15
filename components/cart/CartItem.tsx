@@ -30,6 +30,7 @@ export default function CartItem({
           src={product.images[0] || "/images/placeholder.webp"}
           alt={product.name}
           fill
+          sizes="144px"
           className="object-cover"
         />
       </div>
@@ -46,8 +47,10 @@ export default function CartItem({
           </p>
 
           <p className="mt-3 text-lg font-semibold text-emerald-600">
-            ₹{product.price?.toLocaleString() ?? "Enquire"}
-          </p>
+  {product.price
+    ? `₹${product.price.toLocaleString()}`
+    : "Price on Request"}
+</p>
         </div>
 
         {/* Controls */}
@@ -78,13 +81,19 @@ export default function CartItem({
           </div>
 
           {/* Total */}
-          <div className="text-xl font-bold text-emerald-600">
-            ₹
-            {(
-              (product.price ?? 0) *
-              item.quantity
-            ).toLocaleString()}
-          </div>
+          <div className="text-right">
+  <p className="text-sm text-gray-500">
+    Total
+  </p>
+
+  <p className="text-2xl font-bold text-emerald-600">
+    {product.price
+      ? `₹${(
+          product.price * item.quantity
+        ).toLocaleString()}`
+      : "Enquire"}
+  </p>
+</div>
 
           {/* Remove */}
           <Button
