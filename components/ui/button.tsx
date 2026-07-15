@@ -7,6 +7,7 @@ import { ReactNode } from "react";
 interface ButtonProps {
   children: ReactNode;
   href?: string;
+  external?: boolean;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "outline";
   className?: string;
@@ -16,6 +17,7 @@ interface ButtonProps {
 export default function Button({
   children,
   href,
+  external = false,
   type = "button",
   variant = "primary",
   className = "",
@@ -29,25 +31,33 @@ export default function Button({
     "transition-all duration-300",
     "hover:-translate-y-1",
     "hover:shadow-xl",
-
     {
-      // White → Blue
       "border border-gray-300 bg-white text-gray-800 hover:border-blue-600 hover:bg-blue-600 hover:text-white":
         variant === "primary",
 
-      // Transparent → Blue
       "border border-gray-300 bg-transparent text-gray-700 hover:border-blue-600 hover:bg-blue-600 hover:text-white":
         variant === "secondary",
 
-      // White Outline
       "border-2 border-gray-400 bg-white text-gray-800 hover:border-blue-600 hover:bg-blue-600 hover:text-white":
         variant === "outline",
     },
-
     className
   );
 
   if (href) {
+    if (external) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={classes}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes}>
         {children}

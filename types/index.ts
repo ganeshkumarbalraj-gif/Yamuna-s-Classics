@@ -1,11 +1,7 @@
-export * from "./common";
+import { BaseEntity, SeoData } from "./common";
 
-export interface Product {
-  id: string;
-
+export interface Product extends BaseEntity {
   name: string;
-
-  slug: string;
 
   category: string;
 
@@ -13,25 +9,25 @@ export interface Product {
 
   description: string;
 
-  price: number;
+  price?: number;
 
   images: string[];
+
+  materials: string[];
+
+  colours: string[];
+
+  customizable: boolean;
+
+  deliveryTime: string;
+
+  careInstructions: string[];
 
   featured: boolean;
 
   bestSeller: boolean;
 
   newArrival: boolean;
-
-  customizable: boolean;
-
-  materials: string[];
-
-  colours: string[];
-
-  deliveryTime: string;
-
-  careInstructions: string[];
 
   rating?: number;
 
@@ -40,10 +36,6 @@ export interface Product {
   stock?: "In Stock" | "Made to Order" | "Out of Stock";
 
   tags?: string[];
-
-  // ===============================
-  // Future Ready Fields
-  // ===============================
 
   brand?: string;
 
@@ -58,7 +50,11 @@ export interface Product {
   warranty?: string;
 
   shipping?: string;
+
+  seo?: SeoData;
 }
+
+export * from "./common";
 export * from "./product";
 export * from "./workshop";
 export * from "./gallery";

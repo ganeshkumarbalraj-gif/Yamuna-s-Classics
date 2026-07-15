@@ -99,9 +99,9 @@ export default async function WorkshopDetailsPage({
 
               <ul className="mt-4 list-disc space-y-2 pl-6 text-gray-600">
 
-                {workshop.includes.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
+                {workshop.includes.map((item: string) => (
+  <li key={item}>{item}</li>
+))}
 
               </ul>
 
@@ -111,7 +111,7 @@ export default async function WorkshopDetailsPage({
 
               <Link
                 href={getWhatsAppLink(
-                  `Hello, I&apos;m interested in the "${workshop.name}" workshop.`
+                  `Hello, I'm interested in the "${workshop.name}" workshop.`
                 )}
                 target="_blank"
                 className="rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 px-8 py-4 font-semibold text-white transition hover:opacity-90"
