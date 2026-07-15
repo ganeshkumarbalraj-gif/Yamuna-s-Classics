@@ -11,14 +11,16 @@ export default function CartIcon() {
   return (
     <Link
       href="/cart"
-      className="relative inline-flex items-center justify-center rounded-full p-2 transition hover:bg-emerald-50"
+      className="relative inline-flex items-center justify-center rounded-full p-2 transition hover:bg-gray-100"
       aria-label="Shopping Cart"
     >
-      <ShoppingCart className="h-6 w-6" />
+      <ShoppingCart className="h-6 w-6 text-gray-700" />
 
       {totalItems > 0 && (
-        <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-pink-600 px-1 text-xs font-bold text-white">
-          {totalItems}
+        <span
+          className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-pink-600 text-xs font-bold text-white"
+        >
+          {totalItems > 99 ? "99+" : totalItems}
         </span>
       )}
     </Link>

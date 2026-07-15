@@ -15,19 +15,29 @@ export default function CartSummary() {
 } = useCart();
 
   const orderMessage = [
-    "Hello Yamuna's Classics!",
-    "",
-    "I'd like to place an order:",
-    "",
-    ...items.map(
-      (item) =>
-        `• ${item.product.name} x ${item.quantity}`
-    ),
-    "",
-    `Subtotal: ₹${subtotal.toLocaleString()}`,
-    `Shipping: ₹${shipping.toLocaleString()}`,
-    `Total: ₹${total.toLocaleString()}`,
-  ].join("\n");
+  "🌸 Hello Yamuna's Classics!",
+  "",
+  "I would like to enquire about these products:",
+  "",
+  ...items.map(
+    (item) => `• ${item.product.name} × ${item.quantity}`
+  ),
+  "",
+  `Subtotal: ₹${subtotal.toLocaleString()}`,
+  `Shipping: ${
+    shipping === 0
+      ? "FREE"
+      : `₹${shipping.toLocaleString()}`
+  }`,
+  `Total: ₹${total.toLocaleString()}`,
+  "",
+  "Please let me know:",
+  "• Availability",
+  "• Delivery time",
+  "• Payment details",
+  "",
+  "Thank you!",
+].join("\n");
 
   return (
     <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-lg">
@@ -47,9 +57,13 @@ export default function CartSummary() {
         />
 
         <Row
-          label="Shipping"
-          value={`₹${shipping.toLocaleString()}`}
-        />
+  label="Shipping"
+  value={
+    shipping === 0
+      ? "FREE"
+      : `₹${shipping.toLocaleString()}`
+  }
+/>
 
         <hr />
 
@@ -59,10 +73,15 @@ export default function CartSummary() {
           bold
         />
       </div>
-
+<div className="mt-6 rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-700">
+  ✓ Handmade with care<br />
+  ✓ Secure ordering via WhatsApp<br />
+  ✓ Customization available for most products
+</div>
       <div className="mt-8 space-y-4">
         <Button
   href={getWhatsAppLink(orderMessage)}
+  external
   className="w-full"
 >
   Order on WhatsApp
@@ -72,7 +91,11 @@ export default function CartSummary() {
           type="button"
           variant="secondary"
           className="w-full"
-          onClick={clear}
+          onClick={() => {
+  if (confirm("Clear all items from your cart?")) {
+    clear();
+  }
+}}
         >
           Clear Cart
         </Button>
