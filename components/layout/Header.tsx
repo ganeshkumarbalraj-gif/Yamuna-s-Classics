@@ -1,119 +1,81 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
-import Logo from "./Logo";
-import NavLink from "./NavLink";
-import HeaderActions from "./HeaderActions";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Products", href: "/products" },
-  { name: "Workshops", href: "/workshops" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Contact", href: "/contact" },
-];
+import Logo from "@/components/common/Logo";
+import CartIcon from "@/components/common/CartIcon";
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 20);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <>
-      <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "border-b border-emerald-100 bg-white/90 shadow-lg backdrop-blur-xl"
-            : "bg-white/80 backdrop-blur-md"
-        }`}
-      >
-        <div
-          className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
-            scrolled ? "py-3" : "py-5"
-          }`}
-        >
-          {/* Logo */}
-          <Logo />
+    <header className="sticky top-0 z-50 border-b border-emerald-100 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        {/* Logo */}
+        <Logo />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-8 lg:flex">
-            {navigation.map((item) => (
-              <NavLink key={item.href} href={item.href}>
-                {item.name}
-              </NavLink>
-            ))}
-          </nav>
-
-          {/* Desktop Actions */}
-          <HeaderActions />
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            aria-label="Open menu"
-            onClick={() => setMobileOpen(true)}
-            className="rounded-xl border border-gray-200 p-2 transition hover:bg-gray-100 lg:hidden"
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 lg:flex">
+          <Link
+            href="/"
+            className="font-medium transition hover:text-emerald-600"
           >
-            <Menu size={24} />
-          </button>
-        </div>
-      </header>
+            Home
+          </Link>
 
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <>
-          {/* Overlay */}
-          <div
-            className="fixed inset-0 z-50 bg-black/40"
-            onClick={() => setMobileOpen(false)}
-          />
+          <Link
+            href="/about"
+            className="font-medium transition hover:text-emerald-600"
+          >
+            About
+          </Link>
 
-          {/* Drawer */}
-          <aside className="fixed right-0 top-0 z-50 flex h-screen w-80 flex-col bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b p-6">
-              <Logo />
+          <Link
+            href="/products"
+            className="font-medium transition hover:text-emerald-600"
+          >
+            Products
+          </Link>
 
-              <button
-                type="button"
-                aria-label="Close menu"
-                onClick={() => setMobileOpen(false)}
-                className="rounded-lg p-2 hover:bg-gray-100"
-              >
-                <X size={22} />
-              </button>
-            </div>
+          <Link
+            href="/workshops"
+            className="font-medium transition hover:text-emerald-600"
+          >
+            Workshops
+          </Link>
 
-            <nav className="flex flex-1 flex-col gap-2 p-6">
-              {navigation.map((item) => (
-                <button
-                  key={item.href}
-                  type="button"
-                  onClick={() => {
-                    window.location.href = item.href;
-                  }}
-                  className="rounded-xl px-4 py-3 text-left text-lg font-medium transition hover:bg-emerald-50 hover:text-emerald-600"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </nav>
-          </aside>
-        </>
-      )}
-    </>
+          <Link
+            href="/gallery"
+            className="font-medium transition hover:text-emerald-600"
+          >
+            Gallery
+          </Link>
+
+          <Link
+            href="/faq"
+            className="font-medium transition hover:text-emerald-600"
+          >
+            FAQ
+          </Link>
+
+          <Link
+            href="/contact"
+            className="font-medium transition hover:text-emerald-600"
+          >
+            Contact
+          </Link>
+        </nav>
+
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+  <CartIcon />
+
+  <Link
+    href="/contact"
+    className="rounded-xl bg-gradient-to-r from-pink-500 to-emerald-500 px-5 py-2 font-semibold text-white transition hover:opacity-90"
+  >
+    Enquire
+  </Link>
+</div>
+      </div>
+    </header>
   );
 }

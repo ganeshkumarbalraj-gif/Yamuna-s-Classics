@@ -11,6 +11,7 @@ import {
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 import StarRating from "@/components/common/StarRating";
 import { Product } from "@/types";
+import CartButton from "@/components/common/CartButton";
 
 interface ProductInfoProps {
   product: Product;
@@ -208,7 +209,12 @@ export default function ProductInfo({
             Enquire on WhatsApp
           </WhatsAppButton>
         </div>
-
+<div className="mt-4">
+  <CartButton
+    product={product}
+    className="w-full justify-center rounded-xl"
+  />
+</div>
       </div>
 
     </div>
