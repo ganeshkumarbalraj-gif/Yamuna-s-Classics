@@ -13,8 +13,8 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: "Yamuna&apos;s Classics",
-    template: "%s | Yamuna&apos;s Classics",
+    default: "Yamuna's Classics",
+    template: "%s | Yamuna's Classics",
   },
 
   description:

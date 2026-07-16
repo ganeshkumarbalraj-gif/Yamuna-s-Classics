@@ -1,21 +1,39 @@
+import { ReactNode } from "react";
+
 interface EmptyStateProps {
-  name: string;
+  title: string;
   description: string;
+  icon?: ReactNode;
+  action?: ReactNode;
 }
 
 export default function EmptyState({
-  name,
+  title,
   description,
+  icon,
+  action,
 }: EmptyStateProps) {
   return (
-    <div className="py-16 text-center">
-      <h3 className="text-2xl font-semibold">
-        {name}
-      </h3>
+    <div className="rounded-3xl bg-white p-16 text-center shadow-lg">
+      {icon ? (
+        <div className="mb-6 flex justify-center text-6xl">
+          {icon}
+        </div>
+      ) : null}
 
-      <p className="mt-3 text-gray-600">
+      <h2 className="text-3xl font-bold text-gray-900">
+        {title}
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-xl text-gray-600">
         {description}
       </p>
+
+      {action ? (
+        <div className="mt-8">
+          {action}
+        </div>
+      ) : null}
     </div>
   );
 }

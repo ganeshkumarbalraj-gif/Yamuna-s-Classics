@@ -1,30 +1,55 @@
-"use client";
-
 import Link from "next/link";
+
+import WishlistGrid from "@/components/wishlist/WishlistGrid";
+import Button from "@/components/ui/Button";
+
+export const metadata = {
+  title: "My Wishlist | Yamuna's Classics",
+  description:
+    "Your favourite handmade creations saved for later.",
+};
 
 export default function WishlistPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-emerald-50">
       <section className="mx-auto max-w-7xl px-6 py-16">
-        <h1 className="mb-8 text-4xl font-bold text-gray-900">
-          My Wishlist
-        </h1>
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900">
+              My Wishlist ❤️
+            </h1>
 
-        <div className="rounded-3xl bg-white p-12 text-center shadow-lg">
-          <h2 className="text-2xl font-semibold">
-            Wishlist Coming Soon ❤️
+            <p className="mt-3 text-lg text-gray-600">
+              Save your favourite handmade creations and come back to them anytime.
+            </p>
+          </div>
+
+          <Button href="/products">
+            Continue Shopping
+          </Button>
+        </div>
+
+        <WishlistGrid />
+
+        <div className="mt-16 rounded-3xl bg-gradient-to-r from-pink-500 to-emerald-500 p-10 text-center text-white shadow-xl">
+          <h2 className="text-3xl font-bold">
+            Handmade with Love
           </h2>
 
-          <p className="mt-4 text-gray-600">
-            Save your favourite handmade creations and come back to them anytime.
+          <p className="mx-auto mt-4 max-w-2xl text-lg">
+            Every creation at Yamuna&apos;s Classics is handcrafted with care,
+creativity, and attention to detail. Thank you for supporting
+handmade art.   
           </p>
 
-          <Link
-            href="/products"
-            className="mt-8 inline-flex rounded-xl bg-gradient-to-r from-pink-500 to-emerald-500 px-8 py-4 font-semibold text-white transition hover:opacity-90"
-          >
-            Browse Products
-          </Link>
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex rounded-xl bg-white px-8 py-4 font-semibold text-pink-600 transition hover:scale-105"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
     </main>
