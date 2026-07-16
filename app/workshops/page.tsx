@@ -4,7 +4,7 @@ import WorkshopGrid from "@/components/workshops/WorkshopGrid";
 import { workshops } from "@/data/workshops";
 
 export const metadata: Metadata = {
-  title: "Workshops | Yamuna&apos;s Classics",
+  title: "Workshops | Yamuna's Classics",
   description:
     "Join creative workshops at Yamuna&apos;s Classics and learn crochet, embroidery, and other handmade crafts.",
 };

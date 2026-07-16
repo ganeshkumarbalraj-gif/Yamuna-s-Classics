@@ -43,7 +43,7 @@ export async function generateMetadata({
       "Embroidery",
       "Paper Crafts",
       "Customized Gifts",
-      "Yamuna&apos;s Classics",
+      "Yamuna's Classics",
       "Chennai",
       "India",
     ],

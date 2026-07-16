@@ -1,71 +1,64 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import ProductCard from "@/components/products/ProductCard";
+import WishlistCard from "./WishlistCard";
 
 import WishlistService from "@/services/WishlistService";
-import ProductService from "@/services/ProductService";
+import { products } from "@/data/products";
+import { Product } from "@/types";
 
 export default function WishlistGrid() {
-  const loadProducts = () =>
-    ProductService.getAll().filter((product) =>
-      WishlistService.getItems().includes(product.id)
+  const [wishlistProducts, setWishlistProducts] = useState<Product[]>(() => {
+    const ids = WishlistService.getItems();
+
+    return products.filter((product) =>
+      ids.includes(product.id)
+    );
+  });
+
+  const loadWishlist = useCallback(() => {
+    const ids = WishlistService.getItems();
+
+    const savedProducts = products.filter((product) =>
+      ids.includes(product.id)
     );
 
-  const [products, setProducts] =
-    useState(loadProducts);
-
-  useEffect(() => {
-    const refresh = () => {
-      setProducts(loadProducts());
-    };
-
-    window.addEventListener(
-      WishlistService.eventName(),
-      refresh
-    );
-
-    window.addEventListener(
-      "storage",
-      refresh
-    );
-
-    return () => {
-      window.removeEventListener(
-        WishlistService.eventName(),
-        refresh
-      );
-
-      window.removeEventListener(
-        "storage",
-        refresh
-      );
-    };
+    setWishlistProducts(savedProducts);
   }, []);
 
-  if (products.length === 0) {
-    return (
-      <div className="rounded-3xl border border-dashed border-pink-200 bg-pink-50 py-20 text-center">
+  useEffect(() => {
+    const eventName = WishlistService.eventName();
 
-        <h2 className="text-3xl font-bold">
-          Your Wishlist is Empty
+    window.addEventListener(eventName, loadWishlist);
+
+    return () => {
+      window.removeEventListener(eventName, loadWishlist);
+    };
+  }, [loadWishlist]);
+
+  if (wishlistProducts.length === 0) {
+    return (
+      <div className="rounded-3xl bg-white p-16 text-center shadow-lg">
+        <h2 className="text-3xl font-bold text-gray-800">
+          Your Wishlist is Empty ❤️
         </h2>
 
         <p className="mt-4 text-gray-600">
-          Save your favourite handmade creations here.
+          Save your favourite handmade creations here so you can easily find
+          them later.
         </p>
-
       </div>
     );
   }
 
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <ProductCard
+      {wishlistProducts.map((product) => (
+        <WishlistCard
           key={product.id}
           product={product}
+          onRemove={loadWishlist}
         />
       ))}
     </div>
