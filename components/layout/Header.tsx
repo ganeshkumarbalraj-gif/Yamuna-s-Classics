@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-
 import CartIcon from "@/components/common/CartIcon";
 import Logo from "@/components/common/Logo";
+import MobileMenu from "@/components/layout/MobileMenu";
 
 const navigation = [
   { href: "/", label: "Home" },
@@ -39,16 +39,26 @@ export default function Header() {
 
         {/* Right Side */}
 
-        <div className="flex items-center gap-4">
-          <CartIcon />
+        <div className="flex items-center gap-3">
 
-          <Link
-            href="/contact"
-            className="rounded-xl bg-emerald-600 px-5 py-2.5 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-600 hover:shadow-lg"
-          >
-            Enquire
-          </Link>
-        </div>
+  {/* Cart - Visible on all devices */}
+
+  <CartIcon />
+
+  {/* Desktop Enquire Button */}
+
+  <Link
+    href="/contact"
+    className="hidden rounded-xl bg-emerald-600 px-5 py-2 font-semibold text-white transition-all duration-300 hover:bg-emerald-700 lg:inline-flex"
+  >
+    Enquire
+  </Link>
+
+  {/* Mobile Menu */}
+
+  <MobileMenu />
+
+</div>
       </div>
     </header>
   );
