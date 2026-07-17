@@ -1,40 +1,39 @@
 import Image from "next/image";
-import Button from "@/components/ui/Button";
+
 import SectionTitle from "@/components/common/SectionTitle";
+import Button from "@/components/ui/Button";
+
 import { workshops } from "@/data/workshops";
 
 export default function FeaturedWorkshops() {
   const featured = workshops.slice(0, 2);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 py-24">
+    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-20">
+      {/* Background Decorations */}
 
-      {/* Decorative Background */}
+      <div className="absolute -left-32 top-0 h-80 w-80 rounded-full bg-sky-100/40 blur-3xl" />
 
-      <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-sky-100/40 blur-3xl" />
-
-      <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-purple-100/40 blur-3xl" />
+      <div className="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-purple-100/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
 
         <SectionTitle
           eyebrow="Creative Learning"
           name="Featured Workshops"
-          description="Discover the joy of creating beautiful handmade crafts through inspiring workshops designed for beginners and enthusiasts alike."
+          description="Learn beautiful handmade crafts through engaging workshops designed for beginners, hobbyists, and creative enthusiasts."
         />
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-2">
+        <div className="mt-16 grid gap-8 lg:grid-cols-2">
 
           {featured.map((workshop) => (
-
             <article
               key={workshop.slug}
-              className="group overflow-hidden rounded-[32px] border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+              className="group overflow-hidden rounded-[32px] border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
+              {/* Image */}
 
-              {/* IMAGE */}
-
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-80 overflow-hidden bg-gray-100">
 
                 <Image
                   src={
@@ -46,27 +45,27 @@ export default function FeaturedWorkshops() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <div className="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-gray-700 backdrop-blur">
+                <div className="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-gray-700 shadow backdrop-blur">
                   {workshop.level}
                 </div>
 
               </div>
 
-              {/* CONTENT */}
+              {/* Content */}
 
-              <div className="p-8">
+              <div className="flex flex-1 flex-col p-8">
 
-                <h3 className="text-3xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
+                <h3 className="text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
                   {workshop.name}
                 </h3>
 
-                <p className="mt-5 leading-8 text-gray-600">
+                <p className="mt-5 flex-1 leading-7 text-gray-600">
                   {workshop.description}
                 </p>
 
-                <div className="my-8 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+                <div className="my-6 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
                 <div className="flex items-center justify-between">
 
@@ -93,16 +92,24 @@ export default function FeaturedWorkshops() {
               </div>
 
             </article>
-
           ))}
 
         </div>
 
-        <div className="mt-16 text-center">
+        {/* Bottom CTA */}
+
+        <div className="mt-16 flex flex-col items-center">
+
+          <p className="mb-6 max-w-2xl text-center text-gray-600">
+            Whether you&apos;re starting your creative journey or looking
+to enhance your skills, our workshops offer a fun,
+            hands-on learning experience for all age groups.
+          </p>
 
           <Button
             href="/workshops"
             variant="secondary"
+            className="px-8"
           >
             View All Workshops
           </Button>
@@ -110,7 +117,6 @@ export default function FeaturedWorkshops() {
         </div>
 
       </div>
-
     </section>
   );
 }

@@ -9,27 +9,33 @@ export default function FeaturedProducts() {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white py-24"
       aria-labelledby="featured-products-heading"
+      className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white py-20"
     >
-      {/* Background Decorations */}
+      {/* Decorative Background */}
 
-      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-pink-100/40 blur-3xl" />
+      <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-pink-100/40 blur-3xl" />
 
-      <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-emerald-100/40 blur-3xl" />
+      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-emerald-100/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
+
         <SectionTitle
           eyebrow="Handcrafted Collection"
           name="Featured Handmade Creations"
-          description="Every creation is lovingly handcrafted with creativity, patience, and attention to every little detail."
+          description="Discover some of our most loved handmade creations, carefully crafted with creativity, passion, and attention to every detail."
         />
 
-        <h2 id="featured-products-heading" className="sr-only">
+        <h2
+          id="featured-products-heading"
+          className="sr-only"
+        >
           Featured Handmade Products
         </h2>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+        {/* Products */}
+
+        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {featured.map((product) => (
             <ProductCard
               key={product.id}
@@ -38,14 +44,25 @@ export default function FeaturedProducts() {
           ))}
         </div>
 
-        <div className="mt-16 flex justify-center">
+        {/* CTA */}
+
+        <div className="mt-16 flex flex-col items-center">
+
+          <p className="mb-6 max-w-2xl text-center text-gray-600">
+            Looking for something unique? Browse our complete collection
+            of handcrafted gifts, home décor, crochet creations,
+            embroidery, and personalized items.
+          </p>
+
           <Button
             href="/products"
-            variant="primary"
+            className="px-8"
           >
             Explore All Products
           </Button>
+
         </div>
+
       </div>
     </section>
   );

@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Product } from "@/types";
-import { site } from "@/data/site";
 
 import ProductBadge from "@/components/common/ProductBadge";
 import StarRating from "@/components/common/StarRating";
 import WishlistButton from "@/components/common/WishlistButton";
 import Button from "@/components/ui/Button";
+
+import { site } from "@/data/site";
+import { Product } from "@/types";
 
 interface ProductCardProps {
   product: Product;
@@ -22,7 +23,7 @@ export default function ProductCard({
       : "/images/placeholder-product.jpg";
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Yamuna&apos;s Classics! I'm interested in "${product.name}". Please share more details.`
+    `Hello Yamuna's Classics! I'm interested in "${product.name}". Please share more details.`
   );
 
   const whatsappLink = `https://wa.me/${site.whatsapp.replace(
@@ -31,35 +32,31 @@ export default function ProductCard({
   )}?text=${whatsappMessage}`;
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-[32px] border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+    <article className="group flex h-full flex-col overflow-hidden rounded-[32px] border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
 
-      {/* IMAGE */}
+      {/* Image */}
 
-      <div className="relative aspect-square overflow-hidden">
+      <div className="relative aspect-square overflow-hidden bg-gray-100">
 
         <Image
           src={image}
           alt={product.name}
           fill
-          sizes="(max-width:768px) 100vw,
-                 (max-width:1200px) 50vw,
-                 33vw"
+          sizes="(max-width:768px)100vw,(max-width:1200px)50vw,33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
         {/* Wishlist */}
 
         <div className="absolute right-4 top-4">
-          <WishlistButton
-            productId={product.id}
-          />
+          <WishlistButton productId={product.id} />
         </div>
 
         {/* Category */}
 
-        <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold text-gray-700 backdrop-blur">
+        <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold text-gray-700 shadow backdrop-blur">
           {product.category}
         </div>
 
@@ -89,23 +86,23 @@ export default function ProductCard({
 
       </div>
 
-      {/* CONTENT */}
+      {/* Content */}
 
-      <div className="flex flex-1 flex-col p-7">
+      <div className="flex flex-1 flex-col p-6">
 
         <StarRating />
 
-        <h3 className="mt-4 text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
+        <h3 className="mt-4 text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
           {product.name}
         </h3>
 
-        <p className="mt-4 flex-1 leading-7 text-gray-600">
+        <p className="mt-4 flex-1 text-gray-600 leading-7">
           {product.shortDescription}
         </p>
 
-        {/* Product Features */}
+        {/* Features */}
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-2">
 
           <ProductBadge>
             Handmade
@@ -123,7 +120,7 @@ export default function ProductCard({
 
         </div>
 
-        <div className="my-7 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        <div className="my-6 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
         {/* Price */}
 
@@ -134,29 +131,32 @@ export default function ProductCard({
           </p>
 
           <p className="mt-1 text-3xl font-bold text-emerald-600">
-            ₹{product.price}
-          </p>
+  {product.price !== undefined
+    ? `₹${product.price.toLocaleString()}`
+    : "Price on Request"}
+</p>
 
         </div>
 
         {/* Buttons */}
 
-        <div className="mt-8 grid grid-cols-2 gap-3">
+        <div className="mt-8 space-y-3">
 
           <Button
             href={`/products/${product.slug}`}
+            className="w-full"
           >
             View Details
           </Button>
 
-          <a
+          <Button
             href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-xl border border-green-600 bg-white px-5 py-3 font-semibold text-green-700 transition-all duration-300 hover:-translate-y-1 hover:bg-green-600 hover:text-white hover:shadow-xl"
+            external
+            variant="secondary"
+            className="w-full"
           >
-            WhatsApp
-          </a>
+            WhatsApp Enquiry
+          </Button>
 
         </div>
 

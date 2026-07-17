@@ -31,16 +31,22 @@ export default function Button({
     "transition-all duration-300",
     "hover:-translate-y-1",
     "hover:shadow-xl",
+    "focus:outline-none focus:ring-2 focus:ring-emerald-400",
+
     {
-      "border border-gray-300 bg-white text-gray-800 hover:border-blue-600 hover:bg-blue-600 hover:text-white":
+      // Primary
+      "bg-emerald-600 text-white hover:bg-rose-600":
         variant === "primary",
 
-      "border border-gray-300 bg-transparent text-gray-700 hover:border-blue-600 hover:bg-blue-600 hover:text-white":
+      // Secondary
+      "border border-emerald-600 bg-white text-emerald-600 hover:bg-emerald-600 hover:text-white":
         variant === "secondary",
 
-      "border-2 border-gray-400 bg-white text-gray-800 hover:border-blue-600 hover:bg-blue-600 hover:text-white":
+      // Outline
+      "border-2 border-emerald-600 bg-transparent text-emerald-600 hover:bg-rose-600 hover:border-rose-600 hover:text-white":
         variant === "outline",
     },
+
     className
   );
 
