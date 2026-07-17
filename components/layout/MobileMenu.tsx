@@ -1,12 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
-
-interface MobileMenuProps {
-  open: boolean;
-  onClose: () => void;
-}
+import {
+  Menu,
+  X,
+  ShoppingCart,
+  Heart,
+  Phone,
+} from "lucide-react";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -14,79 +16,124 @@ const navigation = [
   { name: "Products", href: "/products" },
   { name: "Workshops", href: "/workshops" },
   { name: "Gallery", href: "/gallery" },
+  { name: "FAQ", href: "/faq" },
   { name: "Contact", href: "/contact" },
 ];
 
-export default function MobileMenu({
-  open,
-  onClose,
-}: MobileMenuProps) {
+export default function MobileMenu() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
+      {/* Menu Button */}
+
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="rounded-xl p-2 transition hover:bg-gray-100 lg:hidden"
+        aria-label="Open menu"
+      >
+        <Menu size={28} />
+      </button>
+
       {/* Overlay */}
 
-      <div
-        onClick={onClose}
-        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
-          open
-            ? "opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
-      />
+      {open && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/50"
+            onClick={() => setOpen(false)}
+          />
 
-      {/* Drawer */}
+          <aside className="fixed right-0 top-0 z-50 flex h-full w-80 max-w-[85vw] flex-col bg-white shadow-2xl">
 
-      <aside
-        className={`fixed right-0 top-0 z-50 h-screen w-80 bg-white shadow-2xl transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex items-center justify-between border-b px-6 py-5">
+            {/* Header */}
 
-          <h2 className="text-xl font-bold text-emerald-700">
-            Menu
-          </h2>
+            <div className="flex items-center justify-between border-b p-5">
 
-          <button
-            onClick={onClose}
-            className="rounded-lg p-2 transition hover:bg-gray-100"
-          >
-            <X size={22} />
-          </button>
+              <h2 className="text-xl font-bold text-emerald-700">
+                Menu
+              </h2>
 
-        </div>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="rounded-lg p-2 hover:bg-gray-100"
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
 
-        <nav className="flex flex-col p-6">
+            </div>
 
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={onClose}
-              className="rounded-xl px-4 py-4 text-lg font-medium text-gray-700 transition hover:bg-emerald-50 hover:text-emerald-700"
-            >
-              {item.name}
-            </Link>
-          ))}
+            {/* Navigation */}
 
-          <Link
-            href="/search"
-            onClick={onClose}
-            className="mt-6 rounded-xl border border-emerald-500 px-4 py-3 text-center font-semibold text-emerald-700 transition hover:bg-emerald-50"
-          >
-            Search Products
-          </Link>
+            <nav className="flex-1 px-5 py-6">
 
-          <Link
-            href="/contact"
-            onClick={onClose}
-            className="mt-4 rounded-xl bg-emerald-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-emerald-700"
-          >
-            Enquire Now
-          </Link>
+              <div className="space-y-2">
 
-        </nav>
-      </aside>
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-xl px-4 py-3 font-medium transition hover:bg-emerald-50 hover:text-emerald-700"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+
+              </div>
+
+            </nav>
+
+            {/* Footer Actions */}
+
+            <div className="border-t p-5">
+
+              <div className="space-y-3">
+
+                <Link
+                  href="/wishlist"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 rounded-xl border p-3 transition hover:bg-gray-50"
+                >
+                  <Heart size={20} />
+                  Wishlist
+                </Link>
+
+                <Link
+                  href="/cart"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 rounded-xl border p-3 transition hover:bg-gray-50"
+                >
+                  <ShoppingCart size={20} />
+                  Cart
+                </Link>
+
+                <Link
+                  href="/contact"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  <Phone size={18} />
+                  Contact Us
+                </Link>
+
+              </div>
+
+            </div>
+
+          </aside>
+        </>
+      )}
     </>
   );
 }
