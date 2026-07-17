@@ -60,3 +60,4 @@ export * from "./workshop";
 export * from "./gallery";
 export * from "./testimonial";
 export * from "./faq";
+export * from "./review";

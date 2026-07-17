@@ -3,16 +3,16 @@ import ProductService from "@/services/ProductService";
 import { Product } from "@/types";
 
 interface RelatedProductsProps {
-  product: Product;
+  currentProduct: Product;
 }
 
 export default function RelatedProducts({
-  product,
+  currentProduct,
 }: RelatedProductsProps) {
   const relatedProducts = ProductService.getRelated(
-  product.category,
-  product.id
-);
+    currentProduct.category,
+    currentProduct.id
+  );
 
   if (relatedProducts.length === 0) {
     return null;
@@ -20,9 +20,7 @@ export default function RelatedProducts({
 
   return (
     <section className="mt-20">
-
       <div className="mb-8">
-
         <h2 className="text-3xl font-bold text-gray-900">
           Related Products
         </h2>
@@ -30,20 +28,16 @@ export default function RelatedProducts({
         <p className="mt-2 text-gray-600">
           You may also like these handcrafted creations.
         </p>
-
       </div>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-
         {relatedProducts.map((relatedProduct) => (
           <ProductCard
-            key={relatedProduct.slug}
+            key={relatedProduct.id}
             product={relatedProduct}
           />
         ))}
-
       </div>
-
     </section>
   );
 }

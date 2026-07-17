@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import SectionTitle from "@/components/common/SectionTitle";
 
 const crafts = [
@@ -48,40 +49,55 @@ const crafts = [
 
 export default function CraftCategories() {
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-white py-20">
+      {/* Decorative Background */}
+
+      <div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-pink-100/30 blur-3xl" />
+
+      <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-emerald-100/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
 
         <SectionTitle
-  eyebrow="Explore"
-  name="Our Creative World"
-  description="Browse our handcrafted collections and discover workshops that celebrate creativity."
-/>
+          eyebrow="Explore"
+          name="Our Creative World"
+          description="Browse our handcrafted collections and discover workshops that celebrate creativity, learning, and joyful handmade experiences."
+        />
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
           {crafts.map((craft) => (
             <Link
               key={craft.name}
               href={craft.href}
-              className="group rounded-3xl border border-gray-100 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
+              className="group rounded-[32px] border border-gray-100 bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
+              {/* Icon */}
+
               <div
-                className={`mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r ${craft.color} text-3xl shadow-lg`}
+                className={`mb-6 inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-gradient-to-r ${craft.color} text-4xl shadow-lg transition-transform duration-500 group-hover:scale-110`}
               >
                 {craft.emoji}
               </div>
 
-              <h3 className="mb-3 text-2xl font-semibold text-gray-900">
+              {/* Title */}
+
+              <h3 className="mb-3 text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
                 {craft.name}
               </h3>
 
-              <p className="mb-6 text-gray-600">
+              {/* Description */}
+
+              <p className="mb-8 leading-7 text-gray-600">
                 {craft.description}
               </p>
 
-              <span className="font-semibold text-pink-600 group-hover:text-sky-600">
-                Explore →
+              {/* CTA */}
+
+              <span className="inline-flex items-center font-semibold text-emerald-600 transition-all duration-300 group-hover:translate-x-2 group-hover:text-rose-600">
+                Explore Collection →
               </span>
+
             </Link>
           ))}
 
