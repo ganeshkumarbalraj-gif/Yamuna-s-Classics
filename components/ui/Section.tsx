@@ -1,6 +1,8 @@
-interface SectionProps {
-  children: React.ReactNode;
+import { ReactNode } from "react";
+import clsx from "clsx";
 
+interface SectionProps {
+  children: ReactNode;
   className?: string;
 }
 
@@ -10,7 +12,10 @@ export default function Section({
 }: SectionProps) {
   return (
     <section
-      className={`py-24 ${className}`}
+      className={clsx(
+        "relative overflow-hidden py-24",
+        className
+      )}
     >
       {children}
     </section>

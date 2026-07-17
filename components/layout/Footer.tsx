@@ -1,150 +1,187 @@
-"use client";
-
 import Link from "next/link";
 import {
   Facebook,
   Instagram,
   Mail,
-  Phone,
   MapPin,
+  Phone,
 } from "lucide-react";
+
+import { site } from "@/data/site";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-gray-200 bg-gray-50">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative overflow-hidden border-t border-rose-100 bg-gradient-to-b from-white to-rose-50">
+
+      {/* Decorative Background */}
+
+      <div className="absolute -left-32 top-0 h-72 w-72 rounded-full bg-rose-100/40 blur-3xl" />
+
+      <div className="absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-pink-100/40 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6 py-16">
+
+        <div className="grid gap-12 lg:grid-cols-4">
 
           {/* Brand */}
 
           <div>
-            <h2 className="text-2xl font-bold text-emerald-600">
+
+            <h2 className="text-3xl font-bold text-gray-900">
               Yamuna&apos;s Classics
             </h2>
 
-            <p className="mt-4 leading-7 text-gray-600">
+            <p className="mt-5 leading-8 text-gray-600">
               Handmade creations crafted with love.
-              From beautiful crochet and embroidery
-              to creative workshops, every piece is
-              thoughtfully designed to bring joy.
+              Crochet, embroidery, paper crafts,
+              mehendi, baking and inspiring creative
+              workshops.
             </p>
+
           </div>
 
           {/* Quick Links */}
 
           <div>
-            <h3 className="mb-4 text-lg font-semibold">
+
+            <h3 className="mb-5 text-lg font-semibold text-gray-900">
               Quick Links
             </h3>
 
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3">
+
               <li>
-                <Link href="/" className="hover:text-emerald-600">
+                <Link
+                  href="/"
+                  className="text-gray-600 transition hover:text-rose-600"
+                >
                   Home
                 </Link>
               </li>
 
               <li>
-                <Link href="/about" className="hover:text-emerald-600">
+                <Link
+                  href="/about"
+                  className="text-gray-600 transition hover:text-rose-600"
+                >
                   About
                 </Link>
               </li>
 
               <li>
-                <Link href="/products" className="hover:text-emerald-600">
+                <Link
+                  href="/products"
+                  className="text-gray-600 transition hover:text-rose-600"
+                >
                   Products
                 </Link>
               </li>
 
               <li>
-                <Link href="/gallery" className="hover:text-emerald-600">
+                <Link
+                  href="/workshops"
+                  className="text-gray-600 transition hover:text-rose-600"
+                >
+                  Workshops
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/gallery"
+                  className="text-gray-600 transition hover:text-rose-600"
+                >
                   Gallery
                 </Link>
               </li>
 
               <li>
-                <Link href="/contact" className="hover:text-emerald-600">
+                <Link
+                  href="/contact"
+                  className="text-gray-600 transition hover:text-rose-600"
+                >
                   Contact
                 </Link>
               </li>
+
             </ul>
-          </div>
 
-          {/* Workshops */}
-
-          <div>
-            <h3 className="mb-4 text-lg font-semibold">
-              Learn With Us
-            </h3>
-
-            <ul className="space-y-3 text-gray-600">
-              <li>Crochet Workshops</li>
-              <li>Embroidery Classes</li>
-              <li>Paper Crafts</li>
-              <li>Handmade Gifts</li>
-              <li>Custom Orders</li>
-            </ul>
           </div>
 
           {/* Contact */}
 
           <div>
-            <h3 className="mb-4 text-lg font-semibold">
+
+            <h3 className="mb-5 text-lg font-semibold text-gray-900">
               Contact
             </h3>
 
             <div className="space-y-4 text-gray-600">
 
               <div className="flex items-center gap-3">
-                <Phone size={18} className="text-emerald-600" />
-                <span>+91 XXXXX XXXXX</span>
+                <Phone size={18} className="text-rose-500" />
+                <span>{site.phone}</span>
               </div>
 
               <div className="flex items-center gap-3">
-                <Mail size={18} className="text-emerald-600" />
-                <span>info@yamunasclassics.com</span>
+                <Mail size={18} className="text-rose-500" />
+                <span>{site.email}</span>
               </div>
 
-              <div className="flex items-start gap-3">
-                <MapPin size={18} className="mt-1 text-emerald-600" />
-                <span>
-                  Chennai,
-                  <br />
-                  Tamil Nadu,
-                  India
-                </span>
+              <div className="flex items-center gap-3">
+                <MapPin size={18} className="text-rose-500" />
+                <span>{site.address}</span>
               </div>
 
             </div>
 
-            {/* Social Icons */}
+          </div>
 
-            <div className="mt-6 flex gap-4">
+          {/* Follow Us */}
+
+          <div>
+
+            <h3 className="mb-5 text-lg font-semibold text-gray-900">
+              Follow Us
+            </h3>
+
+            <div className="flex gap-4">
 
               <a
-                href="#"
-                className="rounded-full bg-white p-3 shadow transition hover:bg-emerald-600 hover:text-white"
+                href={site.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-white p-3 shadow transition hover:-translate-y-1 hover:bg-rose-500 hover:text-white"
               >
-                <Facebook size={18} />
+                <Facebook size={20} />
               </a>
 
               <a
-                href="#"
-                className="rounded-full bg-white p-3 shadow transition hover:bg-emerald-600 hover:text-white"
+                href={site.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-white p-3 shadow transition hover:-translate-y-1 hover:bg-rose-500 hover:text-white"
               >
-                <Instagram size={18} />
+                <Instagram size={20} />
               </a>
 
             </div>
+
           </div>
 
         </div>
 
-        <div className="mt-12 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Yamuna&apos;s Classics.
-          Handmade with ❤️ in India.
+        {/* Bottom */}
+
+        <div className="mt-16 border-t border-rose-100 pt-8 text-center text-sm text-gray-500">
+
+          © {new Date().getFullYear()}  - Yamuna&apos;s Classics.
+          All Rights Reserved.
+
         </div>
+
       </div>
+
     </footer>
   );
 }

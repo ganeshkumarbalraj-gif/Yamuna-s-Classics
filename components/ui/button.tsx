@@ -26,24 +26,30 @@ export default function Button({
   const classes = clsx(
     "inline-flex items-center justify-center",
     "rounded-xl",
-    "px-6 py-3",
+    "px-7 py-3",
     "font-semibold",
     "transition-all duration-300",
     "hover:-translate-y-1",
     "hover:shadow-xl",
-    "focus:outline-none focus:ring-2 focus:ring-emerald-400",
+    "focus:outline-none",
+    "focus:ring-2",
+    "focus:ring-offset-2",
+    "focus:ring-rose-300",
 
     {
       // Primary
-      "bg-emerald-600 text-white hover:bg-rose-600":
+
+      "bg-gradient-to-r from-rose-500 to-pink-500 text-white hover:from-rose-600 hover:to-pink-600":
         variant === "primary",
 
       // Secondary
-      "border border-emerald-600 bg-white text-emerald-600 hover:bg-emerald-600 hover:text-white":
+
+      "border border-rose-500 bg-white text-rose-600 hover:bg-rose-500 hover:text-white":
         variant === "secondary",
 
       // Outline
-      "border-2 border-emerald-600 bg-transparent text-emerald-600 hover:bg-rose-600 hover:border-rose-600 hover:text-white":
+
+      "border-2 border-rose-500 bg-transparent text-rose-600 hover:bg-rose-500 hover:text-white":
         variant === "outline",
     },
 
@@ -65,7 +71,10 @@ export default function Button({
     }
 
     return (
-      <Link href={href} className={classes}>
+      <Link
+        href={href}
+        className={classes}
+      >
         {children}
       </Link>
     );
@@ -74,8 +83,8 @@ export default function Button({
   return (
     <button
       type={type}
-      className={classes}
       onClick={onClick}
+      className={classes}
     >
       {children}
     </button>

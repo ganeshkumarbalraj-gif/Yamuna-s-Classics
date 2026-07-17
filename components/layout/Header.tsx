@@ -1,24 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import CartIcon from "@/components/common/CartIcon";
-import Logo from "@/components/common/Logo";
-import MobileMenu from "@/components/layout/MobileMenu";
 
-const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/products", label: "Products" },
-  { href: "/workshops", label: "Workshops" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
-];
+import Logo from "@/components/common/Logo";
+import CartIcon from "@/components/common/CartIcon";
+import MobileMenu from "@/components/layout/MobileMenu";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-rose-100 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+
         {/* Logo */}
 
         <Logo />
@@ -26,39 +18,97 @@ export default function Header() {
         {/* Desktop Navigation */}
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="relative font-medium text-gray-700 transition duration-300 hover:text-emerald-600 after:absolute after:bottom-[-6px] after:left-0 after:h-0.5 after:w-0 after:bg-emerald-600 after:transition-all after:duration-300 hover:after:w-full"
-            >
-              {item.label}
-            </Link>
-          ))}
+
+          <Link
+            href="/"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            Home
+          </Link>
+
+          <Link
+            href="/about"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            About
+          </Link>
+
+          <Link
+            href="/products"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            Products
+          </Link>
+
+          <Link
+            href="/workshops"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            Workshops
+          </Link>
+
+          <Link
+            href="/gallery"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            Gallery
+          </Link>
+
+          <Link
+            href="/faq"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            FAQ
+          </Link>
+
+          <Link
+            href="/contact"
+            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
+          >
+            Contact
+          </Link>
+
         </nav>
 
         {/* Right Side */}
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
 
-  {/* Cart - Visible on all devices */}
+          <CartIcon />
 
-  <CartIcon />
+          <Link
+            href="/contact"
+            className="
+              hidden
+              rounded-xl
+              bg-gradient-to-r
+              from-rose-500
+              to-pink-500
+              px-6
+              py-3
+              font-semibold
+              text-white
+              shadow-md
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:from-rose-600
+              hover:to-pink-600
+              hover:shadow-xl
+              lg:inline-flex
+            "
+          >
+            Enquire
+          </Link>
 
-  {/* Desktop Enquire Button */}
+          {/* Mobile Navigation */}
 
-  <Link
-    href="/contact"
-    className="hidden rounded-xl bg-emerald-600 px-5 py-2 font-semibold text-white transition-all duration-300 hover:bg-emerald-700 lg:inline-flex"
-  >
-    Enquire
-  </Link>
+          <div className="lg:hidden">
+            <MobileMenu />
+          </div>
 
-  {/* Mobile Menu */}
+        </div>
 
-  <MobileMenu />
-
-</div>
       </div>
     </header>
   );
