@@ -13,6 +13,7 @@ import {
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { site } from "@/data/site";
+import TextArea from "@/components/ui/TextArea";
 
 export default function ContactSection() {
   const [name, setName] = useState("");
@@ -174,13 +175,13 @@ ${message}`;
             onChange={(e) => setPhone(e.target.value)}
           />
 
-          <textarea
-            required
-            placeholder="Your Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="min-h-36 w-full rounded-xl border border-gray-300 bg-white p-4 outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
-          />
+          <TextArea
+  required
+  placeholder="Your Message"
+  value={message}
+  onChange={(e) => setMessage(e.target.value)}
+  className="min-h-36 w-full rounded-xl border border-gray-300 bg-white p-4 outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+/>
 
           <Button
             type="submit"
