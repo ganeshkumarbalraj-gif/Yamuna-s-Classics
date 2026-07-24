@@ -1,4 +1,5 @@
 import { TextareaHTMLAttributes } from "react";
+import clsx from "clsx";
 
 type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
@@ -9,7 +10,17 @@ export default function TextArea({
   return (
     <textarea
       {...props}
-      className={`min-h-36 w-full rounded-xl border border-gray-300 bg-white p-4 outline-none transition focus:border-rose-500 focus:ring-2 focus:ring-rose-200 ${className}`}
+      className={clsx(
+        "w-full rounded-xl border border-gray-300 bg-white p-4",
+        "transition-all duration-300",
+        "focus:border-pink-500",
+        "focus:ring-2",
+        "focus:ring-pink-200",
+        "hover:border-emerald-500",
+        "hover:shadow-md",
+        "focus:outline-none",
+        className
+      )}
     />
   );
 }

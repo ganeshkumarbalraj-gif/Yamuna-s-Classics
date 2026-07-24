@@ -13,7 +13,7 @@ export default function ProductInfo({
   product,
 }: ProductInfoProps) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
 
       {/* Category */}
 
@@ -25,11 +25,11 @@ export default function ProductInfo({
 
       <div>
 
-        <h1 className="text-4xl font-bold text-gray-900">
+        <h1 className="text-4xl font-extrabold leading-tight text-gray-900 lg:text-5xl">
           {product.name}
         </h1>
 
-        <p className="mt-3 leading-8 text-gray-600">
+        <p className="mt-5 text-lg leading-8 text-gray-600">
           {product.shortDescription}
         </p>
 
@@ -37,21 +37,25 @@ export default function ProductInfo({
 
       {/* Price */}
 
-      <div>
+      <div className="rounded-[32px] border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-8 shadow-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
 
-        <p className="text-sm text-gray-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-gray-500">
           Starting From
         </p>
 
-        <p className="mt-2 text-4xl font-bold text-emerald-600">
+        <p className="mt-3 text-5xl font-bold text-emerald-700">
           {product.price !== undefined
             ? `₹${product.price.toLocaleString()}`
             : "Price on Request"}
         </p>
 
+        <p className="mt-4 text-sm text-gray-600">
+          Handmade • Premium Quality • Made with Love
+        </p>
+
       </div>
 
-      {/* Product Badges */}
+      {/* Product Features */}
 
       <div className="flex flex-wrap gap-3">
 
@@ -60,7 +64,7 @@ export default function ProductInfo({
         </Badge>
 
         {product.customizable && (
-          <Badge variant="secondary">
+          <Badge variant="success">
             Customizable
           </Badge>
         )}
@@ -73,10 +77,10 @@ export default function ProductInfo({
 
       {/* Description */}
 
-      <div>
+      <div className="rounded-[32px] border border-gray-100 bg-white p-7 shadow-sm transition-all duration-500 hover:shadow-lg">
 
-        <h2 className="mb-3 text-xl font-semibold">
-          Description
+        <h2 className="mb-5 text-2xl font-bold text-gray-900">
+          Product Description
         </h2>
 
         <p className="leading-8 text-gray-600">
@@ -87,31 +91,52 @@ export default function ProductInfo({
 
       {/* Delivery */}
 
-      <div className="rounded-2xl bg-emerald-50 p-5">
+      <div className="rounded-[32px] border border-emerald-100 bg-gradient-to-r from-emerald-50 to-white p-7 shadow-sm transition-all duration-500 hover:shadow-lg">
 
-        <h3 className="font-semibold text-emerald-700">
+        <h3 className="text-xl font-bold text-emerald-700">
           Delivery Information
         </h3>
 
-        <p className="mt-2 text-sm text-gray-700">
+        <p className="mt-3 leading-8 text-gray-700">
           {product.deliveryTime}
         </p>
 
       </div>
 
-      {/* Trust Section */}
+      {/* Trust */}
 
-      <div className="rounded-2xl border border-gray-100 bg-white p-6">
+      <div className="rounded-[32px] border border-gray-100 bg-white p-7 shadow-sm transition-all duration-500 hover:shadow-lg">
 
-        <ul className="space-y-3 text-sm text-gray-700">
+        <h3 className="mb-4 text-lg font-semibold text-gray-900">
+  Why You&apos;ll Love It
+</h3>
 
-          <li>✓ Handmade with care</li>
+        <ul className="space-y-4 text-gray-700">
 
-          <li>✓ Secure WhatsApp ordering</li>
+          <li className="flex cart-start gap-3">
+            <span className="text-emerald-600">✓</span>
+            Handmade with love and attention to every detail
+          </li>
 
-          <li>✓ Quality craftsmanship</li>
+          <li className="flex cart-start gap-3">
+            <span className="text-emerald-600">✓</span>
+            Premium quality materials and craftsmanship
+          </li>
 
-          <li>✓ Custom orders available</li>
+          <li className="flex cart-start gap-3">
+            <span className="text-emerald-600">✓</span>
+            Secure ordering through WhatsApp
+          </li>
+
+          <li className="flex cart-start gap-3">
+            <span className="text-emerald-600">✓</span>
+            Personalization available on selected products
+          </li>
+
+          <li className="flex cart-start gap-3">
+            <span className="text-emerald-600">✓</span>
+            Beautifully packed and gift ready
+          </li>
 
         </ul>
 
@@ -136,7 +161,7 @@ export default function ProductInfo({
 
       {/* Wishlist */}
 
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-2">
 
         <WishlistButton
           productId={product.id}

@@ -1,54 +1,47 @@
-import { GalleryItem } from "@/types";
+import { GalleryItem } from "@/types/gallery";
 
-export const gallery: GalleryItem[] = [
+export const galleryItems: GalleryItem[] = [
   {
     id: "crochet-bouquet",
-
     slug: "crochet-bouquet",
-
     name: "Crochet Bouquet",
-
     category: "Crochet",
-
     image: "/gallery/crochet1.jpg",
-
     description:
-      "Handcrafted crochet flower bouquet made with premium yarn.",
-
+      "Beautiful handmade crochet bouquet created with care and creativity.",
     featured: true,
   },
 
   {
-    id: "birthday-cake",
-
-    slug: "birthday-cake",
-
-    name: "Birthday Cake",
-
-    category: "Baking",
-
-    image: "/gallery/cake1.jpg",
-
+    id: "embroidery-hoop-art",
+    slug: "embroidery-hoop-art",
+    name: "Embroidery Hoop Art",
+    category: "Embroidery",
+    image: "/gallery/embroidery1.jpg",
     description:
-      "Customized birthday cake designed for special celebrations.",
-
+      "Elegant embroidery artwork handcrafted with traditional techniques.",
     featured: true,
   },
 
   {
-    id: "bridal-mehendi",
-
-    slug: "bridal-mehendi",
-
-    name: "Bridal Mehendi",
-
+    id: "mehendi-design",
+    slug: "mehendi-design",
+    name: "Traditional Mehendi Design",
     category: "Mehendi",
-
     image: "/gallery/mehendi1.jpg",
-
     description:
-      "Traditional bridal mehendi with elegant contemporary patterns.",
+      "Creative traditional mehendi patterns designed with precision.",
+    featured: false,
+  },
 
-    featured: true,
+  {
+    id: "paper-craft",
+    slug: "paper-craft",
+    name: "Paper Craft",
+    category: "Creative Craft",
+    image: "/gallery/paper1.jpg",
+    description:
+      "Unique handmade paper craft creations.",
+    featured: false,
   },
 ];

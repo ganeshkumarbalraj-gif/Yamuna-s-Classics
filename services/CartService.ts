@@ -5,12 +5,12 @@ const STORAGE_KEY = "yamunas-classics-cart";
 const CART_EVENT = "cartUpdated";
 
 class CartService {
-  private save(items: CartItem[]) {
+  private save(cart: CartItem[]) {
     if (typeof window === "undefined") return;
 
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify(items)
+      JSON.stringify(cart)
     );
 
     window.dispatchEvent(
@@ -37,49 +37,49 @@ class CartService {
   }
 
   add(product: Product) {
-    const items = this.getItems();
+    const cart = this.getItems();
 
-    const existing = items.find(
+    const existing = cart.find(
       (item) => item.product.id === product.id
     );
 
     if (existing) {
       existing.quantity += 1;
     } else {
-      items.push({
+      cart.push({
         product,
         quantity: 1,
       });
     }
 
-    this.save(items);
+    this.save(cart);
   }
 
   remove(productId: string) {
-    const items = this.getItems().filter(
+    const cart = this.getItems().filter(
       (item) => item.product.id !== productId
     );
 
-    this.save(items);
+    this.save(cart);
   }
 
   increase(productId: string) {
-    const items = this.getItems();
+    const cart = this.getItems();
 
-    const item = items.find(
+    const item = cart.find(
       (i) => i.product.id === productId
     );
 
     if (item) {
       item.quantity++;
-      this.save(items);
+      this.save(cart);
     }
   }
 
   decrease(productId: string) {
-    const items = this.getItems();
+    const cart = this.getItems();
 
-    const item = items.find(
+    const item = cart.find(
       (i) => i.product.id === productId
     );
 
@@ -92,7 +92,7 @@ class CartService {
       return;
     }
 
-    this.save(items);
+    this.save(cart);
   }
 
   clear() {
@@ -100,9 +100,9 @@ class CartService {
   }
 
   getSummary(): CartSummary {
-    const items = this.getItems();
+    const cart = this.getItems();
 
-    const subtotal = items.reduce(
+    const subtotal = cart.reduce(
       (sum, item) =>
         sum +
         (item.product.price ?? 0) *
@@ -110,7 +110,7 @@ class CartService {
       0
     );
 
-    const totalItems = items.reduce(
+    const totalItems = cart.reduce(
       (sum, item) => sum + item.quantity,
       0
     );
@@ -121,7 +121,7 @@ class CartService {
         : 100;
 
     return {
-      items,
+      cart,
       subtotal,
       shipping,
       total: subtotal + shipping,

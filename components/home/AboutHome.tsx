@@ -5,7 +5,7 @@ export default function AboutHome() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 py-24">
 
-      {/* Background Decorations */}
+      {/* Decorative Background */}
 
       <div className="absolute -left-32 top-0 h-80 w-80 rounded-full bg-rose-100/40 blur-3xl" />
 
@@ -16,15 +16,17 @@ export default function AboutHome() {
         {/* Founder Image */}
 
         <div className="relative">
+<div className="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-pink-200/30 blur-2xl" />
 
-          <div className="overflow-hidden rounded-[36px] shadow-2xl">
+<div className="absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-emerald-200/30 blur-3xl" />
+          <div className="group relative overflow-hidden rounded-[36px] bg-white p-3 shadow-2xl ring-1 ring-gray-100 transition-all duration-700 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_35px_70px_rgba(0,0,0,0.18)]">
 
             <Image
-              src="/about/founder.jpg"
+              src="/about/yamuna.png"
               alt="Founder of Yamuna's Classics"
               width={700}
               height={700}
-              className="w-full object-cover transition duration-700 hover:scale-105"
+              className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
 
           </div>
@@ -57,6 +59,8 @@ export default function AboutHome() {
             creativity. Every handmade piece is created with care to make your
             special moments even more memorable.
           </p>
+
+          {/* Buttons */}
 
           <div className="mt-10 flex flex-wrap gap-4">
 

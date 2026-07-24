@@ -1,33 +1,43 @@
-import { gallery } from "@/data/gallery";
+import { galleryItems } from "@/data/gallery";
+import { GalleryItem } from "@/types/gallery";
 
 class GalleryService {
-  getAll() {
-    return gallery;
+
+  getAll(): GalleryItem[] {
+    return galleryItems;
   }
 
-  getFeatured() {
-    return gallery.filter((g) => g.featured);
+
+  getFeatured(): GalleryItem[] {
+    return galleryItems.filter(
+      (item) => item.featured
+    );
   }
 
-  getByCategory(category: string) {
-    if (category === "All") {
-      return gallery;
-    }
 
-    return gallery.filter((g) => g.category === category);
+  getBySlug(
+    slug: string
+  ): GalleryItem | undefined {
+    return galleryItems.find(
+      (item) => item.slug === slug
+    );
   }
 
-  getCategories() {
+
+  getCategories(): string[] {
+
     return [
-      "All",
-      ...new Set(gallery.map((g) => g.category)),
+      ...new Set(
+        galleryItems.map(
+          (item) => item.category
+        )
+      ),
     ];
+
   }
 
-  getBySlug(slug: string) {
-    return gallery.find((g) => g.slug === slug);
-  }
 }
+
 
 const galleryService = new GalleryService();
 

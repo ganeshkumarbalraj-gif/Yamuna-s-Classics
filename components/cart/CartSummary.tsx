@@ -1,141 +1,152 @@
 "use client";
 
 import Button from "@/components/ui/Button";
-import useCart from "@/hooks/useCart";
-import { getWhatsAppLink } from "@/lib/whatsapp";
+
+import { useCart } from "@/context/CartContext";
+
 
 export default function CartSummary() {
-  const {
-  items,
-  totalItems,
-  subtotal,
-  shipping,
-  total,
-  clear,
-} = useCart();
 
-  const orderMessage = [
-  "🌸 Hello Yamuna's Classics!",
-  "",
-  "I would like to enquire about these products:",
-  "",
-  ...items.map(
-    (item) => `• ${item.product.name} × ${item.quantity}`
-  ),
-  "",
-  `Subtotal: ₹${subtotal.toLocaleString()}`,
-  `Shipping: ${
-    shipping === 0
-      ? "FREE"
-      : `₹${shipping.toLocaleString()}`
-  }`,
-  `Total: ₹${total.toLocaleString()}`,
-  "",
-  "Please let me know:",
-  "• Availability",
-  "• Delivery time",
-  "• Payment details",
-  "",
-  "Thank you!",
-].join("\n");
+
+  const {
+    totalPrice,
+    itemCount,
+  } = useCart();
+
+
 
   return (
-    <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-lg">
-      <h2 className="mb-8 text-2xl font-bold">
+
+    <div
+      className="
+      rounded-3xl
+      bg-white
+      p-8
+      shadow-xl
+      "
+    >
+
+
+
+      <h2
+        className="
+        mb-8
+        font-body
+        text-3xl
+        font-bold
+        text-gray-900
+        "
+      >
+
         Order Summary
+
       </h2>
 
-      <div className="space-y-4">
-        <Row
-          label="Items"
-          value={totalItems.toString()}
-        />
 
-        <Row
-          label="Subtotal"
-          value={`₹${subtotal.toLocaleString()}`}
-        />
 
-        <Row
-  label="Shipping"
-  value={
-    shipping === 0
-      ? "FREE"
-      : `₹${shipping.toLocaleString()}`
-  }
-/>
+
+      <div className="space-y-5">
+
+
+        <div className="flex justify-between text-lg">
+
+          <span>
+            Cart
+          </span>
+
+          <span>
+            {itemCount}
+          </span>
+
+        </div>
+
+
+
+
+        <div className="flex justify-between text-lg">
+
+          <span>
+            Delivery
+          </span>
+
+
+          <span className="text-emerald-600">
+
+            FREE
+
+          </span>
+
+
+        </div>
+
+
+
 
         <hr />
 
-        <Row
-          label="Total"
-          value={`₹${total.toLocaleString()}`}
-          bold
-        />
-      </div>
-<div className="mt-6 rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-700">
-  ✓ Handmade with care<br />
-  ✓ Secure ordering via WhatsApp<br />
-  ✓ Customization available for most products
-</div>
-      <div className="mt-8 space-y-4">
-        <Button
-  href={getWhatsAppLink(orderMessage)}
-  external
-  className="w-full"
->
-  Order on WhatsApp
-</Button>
 
-        <Button
-          type="button"
-          variant="secondary"
-          className="w-full"
-          onClick={() => {
-  if (confirm("Clear all items from your cart?")) {
-    clear();
-  }
-}}
+
+
+        <div
+          className="
+          flex
+          justify-between
+          text-2xl
+          font-bold
+          "
         >
-          Clear Cart
-        </Button>
+
+          <span>
+            Total
+          </span>
+
+
+          <span className="text-emerald-700">
+
+            ₹{totalPrice.toLocaleString()}
+
+          </span>
+
+
+        </div>
+
+
       </div>
+
+
+
+
+      <div className="mt-10 space-y-4">
+
+
+        <Button
+          href="/checkout"
+          className="w-full"
+        >
+
+          Proceed to Checkout
+
+        </Button>
+
+
+
+        <Button
+          href="/products"
+          variant="outline"
+          className="w-full"
+        >
+
+          Continue Shopping
+
+        </Button>
+
+
+      </div>
+
+
+
     </div>
+
   );
-}
 
-interface RowProps {
-  label: string;
-  value: string;
-  bold?: boolean;
-}
-
-function Row({
-  label,
-  value,
-  bold = false,
-}: RowProps) {
-  return (
-    <div className="flex items-center justify-between">
-      <span
-        className={
-          bold
-            ? "text-lg font-bold"
-            : "text-gray-600"
-        }
-      >
-        {label}
-      </span>
-
-      <span
-        className={
-          bold
-            ? "text-lg font-bold text-emerald-600"
-            : "font-medium"
-        }
-      >
-        {value}
-      </span>
-    </div>
-  );
 }

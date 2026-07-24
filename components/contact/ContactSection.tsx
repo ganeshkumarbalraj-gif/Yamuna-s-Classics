@@ -1,32 +1,51 @@
 "use client";
 
 import { useState } from "react";
+
 import {
   Mail,
   Phone,
   MapPin,
-  Instagram,
-  Youtube,
-  MessageCircle,
 } from "lucide-react";
+
+import {
+  FaInstagram,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
+
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { site } from "@/data/site";
 import TextArea from "@/components/ui/TextArea";
 
+import { site } from "@/data/site";
+
+
+
+
 export default function ContactSection() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
+
+
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [phone,setPhone] = useState("");
+  const [message,setMessage] = useState("");
+
+
+
+
 
   function handleSubmit(
-    e: React.FormEvent<HTMLFormElement>
-  ) {
+    e:React.FormEvent<HTMLFormElement>
+  ){
+
     e.preventDefault();
 
-    const text = `Hello Yamuna,
+
+    const text = `
+
+Hello Yamuna,
 
 My Name: ${name}
 
@@ -35,162 +54,580 @@ Email: ${email}
 Phone: ${phone}
 
 Message:
-${message}`;
+${message}
 
-    const url = `https://wa.me/${site.whatsapp.replace(
-      /\D/g,
-      ""
-    )}?text=${encodeURIComponent(text)}`;
+`;
 
-    window.open(url, "_blank");
+
+
+    const whatsappUrl =
+      `https://wa.me/${site.whatsapp.replace(
+        /\D/g,
+        ""
+      )}?text=${encodeURIComponent(text)}`;
+
+
+
+    window.open(
+      whatsappUrl,
+      "_blank"
+    );
+
   }
 
+
+
+
+
+
+
   return (
-    <section className="rounded-3xl bg-pink-50 p-10 shadow-sm">
-      <div className="mb-10 text-center">
-        <p className="font-semibold uppercase tracking-widest text-pink-600">
-          Contact
-        </p>
 
-        <h2 className="mt-3 text-4xl font-bold">
-          We&apos;d Love to Hear From You
-        </h2>
+    <section
 
-        <p className="mt-4 text-gray-600">
-          Have a question about our handmade creations
-          or workshops? Send us a message.
-        </p>
-      </div>
+      className="
+      bg-gradient-to-b
+      from-white
+      via-rose-50/40
+      to-white
+      py-24
+      "
 
-      <div className="grid gap-12 lg:grid-cols-2">
-        {/* Contact Details */}
+    >
 
-        <div className="space-y-8">
-          <div className="flex gap-4">
-            <Phone className="mt-1 text-pink-600" />
 
-            <div>
-              <h3 className="font-semibold">Phone</h3>
 
-              <a
-                href={`tel:${site.phone}`}
-                className="transition hover:text-pink-600"
-              >
-                {site.phone}
-              </a>
-            </div>
+
+
+      <div
+
+        className="
+        mx-auto
+        max-w-7xl
+        px-6
+        "
+
+      >
+
+
+
+
+
+        <div
+
+          className="
+          rounded-[32px]
+          border
+          border-gray-100
+          bg-white
+          p-8
+          shadow-lg
+          md:p-12
+          "
+
+        >
+
+
+
+
+
+
+          {/* Header */}
+
+
+
+          <div
+
+            className="
+            mx-auto
+            max-w-3xl
+            text-center
+            "
+
+          >
+
+
+
+            <p
+
+              className="
+              font-semibold
+              uppercase
+              tracking-[0.3em]
+              text-pink-600
+              "
+
+            >
+
+              Contact
+
+            </p>
+
+
+
+
+            <h2
+
+              className="
+              mt-5
+              text-4xl
+              font-bold
+              text-gray-900
+              "
+
+            >
+
+              We&apos;d Love to Hear From You
+
+            </h2>
+
+
+
+
+
+            <p
+
+              className="
+              mt-5
+              text-lg
+              leading-8
+              text-gray-600
+              "
+
+            >
+
+              Have a question about our handmade creations
+              or workshops? Send us a message.
+
+            </p>
+
+
+
           </div>
 
-          <div className="flex gap-4">
-            <Mail className="mt-1 text-pink-600" />
 
-            <div>
-              <h3 className="font-semibold">Email</h3>
 
-              <a
-                href={`mailto:${site.email}`}
-                className="transition hover:text-pink-600"
+
+
+
+
+          <div
+
+            className="
+            mt-14
+            grid
+            gap-12
+            lg:grid-cols-2
+            "
+
+          >
+
+
+
+
+
+
+
+            {/* Contact Information */}
+
+
+
+            <div
+
+              className="
+              space-y-6
+              "
+
+            >
+
+
+
+
+
+              <ContactItem
+                icon={<Phone size={22}/>}
+                title="Phone"
               >
-                {site.email}
-              </a>
-            </div>
-          </div>
 
-          <div className="flex gap-4">
-            <MapPin className="mt-1 text-pink-600" />
+                <a
+                  href={`tel:${site.phone}`}
+                  className="hover:text-pink-600"
+                >
+                  {site.phone}
+                </a>
 
-            <div>
-              <h3 className="font-semibold">Location</h3>
+              </ContactItem>
 
-              <p>
+
+
+
+
+
+
+              <ContactItem
+                icon={<Mail size={22}/>}
+                title="Email"
+              >
+
+                <a
+                  href={`mailto:${site.email}`}
+                  className="hover:text-pink-600"
+                >
+                  {site.email}
+                </a>
+
+
+              </ContactItem>
+
+
+
+
+
+
+
+              <ContactItem
+                icon={<MapPin size={22}/>}
+                title="Location"
+              >
+
                 {site.city}, {site.state}, {site.country}
-              </p>
+
+
+              </ContactItem>
+
+
+
+
+
+
+
+              <div className="pt-5">
+
+
+                <h3
+                  className="
+                  mb-4
+                  font-semibold
+                  text-gray-900
+                  "
+                >
+
+                  Follow Us
+
+                </h3>
+
+
+
+
+                <div className="flex gap-4">
+
+
+                  <SocialButton href={site.instagram}>
+                    <FaInstagram size={22}/>
+                  </SocialButton>
+
+
+                  <SocialButton href={site.youtube}>
+                    <FaYoutube size={22}/>
+                  </SocialButton>
+
+
+                  <SocialButton
+                    href={`https://wa.me/${site.whatsapp.replace(/\D/g,"")}`}
+                  >
+                    <FaWhatsapp size={22}/>
+                  </SocialButton>
+
+
+                </div>
+
+
+              </div>
+
+
+
+
             </div>
+
+
+
+
+
+
+
+
+            {/* Form */}
+
+
+
+            <form
+
+              onSubmit={handleSubmit}
+
+              className="
+              space-y-5
+              rounded-3xl
+              bg-gray-50
+              p-6
+              "
+
+            >
+
+
+
+              <Input
+
+                required
+
+                placeholder="Your Name"
+
+                value={name}
+
+                onChange={(e)=>setName(e.target.value)}
+
+              />
+
+
+
+
+
+              <Input
+
+                required
+
+                type="email"
+
+                placeholder="Email Address"
+
+                value={email}
+
+                onChange={(e)=>setEmail(e.target.value)}
+
+              />
+
+
+
+
+
+              <Input
+
+                required
+
+                placeholder="Phone Number"
+
+                value={phone}
+
+                onChange={(e)=>setPhone(e.target.value)}
+
+              />
+
+
+
+
+
+
+              <TextArea
+
+                required
+
+                placeholder="Your Message"
+
+                value={message}
+
+                onChange={(e)=>setMessage(e.target.value)}
+
+              />
+
+
+
+
+
+
+              <Button
+
+                type="submit"
+
+                className="w-full"
+
+              >
+
+                Send via WhatsApp
+
+              </Button>
+
+
+
+
+            </form>
+
+
+
+
+
+
           </div>
 
-          <div className="pt-4">
-            <h3 className="mb-4 font-semibold">
-              Follow Us
-            </h3>
 
-            <div className="flex gap-4">
-              <a
-                href={site.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="rounded-full bg-white p-3 shadow transition hover:scale-110"
-              >
-                <Instagram />
-              </a>
 
-              <a
-                href={site.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="rounded-full bg-white p-3 shadow transition hover:scale-110"
-              >
-                <Youtube />
-              </a>
 
-              <a
-                href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="rounded-full bg-green-500 p-3 text-white shadow transition hover:scale-110"
-              >
-                <MessageCircle />
-              </a>
-            </div>
-          </div>
+
         </div>
 
-        {/* Contact Form */}
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-5"
-        >
-          <Input
-            required
-            placeholder="Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
 
-          <Input
-            required
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
 
-          <Input
-            required
-            placeholder="Phone Number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
 
-          <TextArea
-  required
-  placeholder="Your Message"
-  value={message}
-  onChange={(e) => setMessage(e.target.value)}
-  className="min-h-36 w-full rounded-xl border border-gray-300 bg-white p-4 outline-none transition focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
-/>
-
-          <Button
-            type="submit"
-            className="w-full"
-          >
-            Send via WhatsApp
-          </Button>
-        </form>
       </div>
+
+
+
+
+
     </section>
+
+
   );
+
+}
+
+
+
+
+
+
+
+
+
+function ContactItem({
+
+  icon,
+
+  title,
+
+  children,
+
+}:{
+
+  icon:React.ReactNode;
+
+  title:string;
+
+  children:React.ReactNode;
+
+}){
+
+
+  return (
+
+    <div
+
+      className="
+      flex
+      gap-4
+      rounded-2xl
+      bg-gray-50
+      p-5
+      "
+
+    >
+
+
+
+      <div className="text-pink-600">
+
+        {icon}
+
+      </div>
+
+
+
+
+
+      <div>
+
+
+        <h3 className="font-semibold text-gray-900">
+
+          {title}
+
+        </h3>
+
+
+
+        <div className="text-gray-600">
+
+          {children}
+
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+  );
+
+}
+
+
+
+
+
+
+
+function SocialButton({
+
+  href,
+
+  children,
+
+}:{
+
+  href:string;
+
+  children:React.ReactNode;
+
+}){
+
+
+  return (
+
+    <a
+
+      href={href}
+
+      target="_blank"
+
+      rel="noopener noreferrer"
+
+      className="
+      flex
+      h-12
+      w-12
+      items-center
+      justify-center
+      rounded-full
+      bg-pink-50
+      text-pink-600
+      shadow
+      transition-all
+      duration-300
+      hover:scale-110
+      hover:bg-pink-500
+      hover:text-white
+      "
+
+    >
+
+      {children}
+
+    </a>
+
+
+  );
+
 }

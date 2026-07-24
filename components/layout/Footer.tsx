@@ -1,187 +1,571 @@
 import Link from "next/link";
+
 import {
-  Facebook,
-  Instagram,
   Mail,
   MapPin,
   Phone,
 } from "lucide-react";
 
+import {
+  FaInstagram,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
+
+
 import { site } from "@/data/site";
 
-export default function Footer() {
-  return (
-    <footer className="relative overflow-hidden border-t border-rose-100 bg-gradient-to-b from-white to-rose-50">
 
-      {/* Decorative Background */}
 
-      <div className="absolute -left-32 top-0 h-72 w-72 rounded-full bg-rose-100/40 blur-3xl" />
+const quickLinks = [
 
-      <div className="absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-pink-100/40 blur-3xl" />
+  { href:"/", label:"Home" },
 
-      <div className="relative mx-auto max-w-7xl px-6 py-16">
+  { href:"/about", label:"About" },
 
-        <div className="grid gap-12 lg:grid-cols-4">
+  { href:"/products", label:"Products" },
 
-          {/* Brand */}
+  { href:"/workshops", label:"Workshops" },
 
-          <div>
+  { href:"/gallery", label:"Gallery" },
 
-            <h2 className="text-3xl font-bold text-gray-900">
-              Yamuna&apos;s Classics
-            </h2>
+  { href:"/contact", label:"Contact" },
 
-            <p className="mt-5 leading-8 text-gray-600">
-              Handmade creations crafted with love.
-              Crochet, embroidery, paper crafts,
-              mehendi, baking and inspiring creative
-              workshops.
-            </p>
+];
 
-          </div>
 
-          {/* Quick Links */}
 
-          <div>
 
-            <h3 className="mb-5 text-lg font-semibold text-gray-900">
-              Quick Links
-            </h3>
 
-            <ul className="space-y-3">
+export default function Footer(){
 
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-600 transition hover:text-rose-600"
-                >
-                  Home
-                </Link>
-              </li>
 
-              <li>
-                <Link
-                  href="/about"
-                  className="text-gray-600 transition hover:text-rose-600"
-                >
-                  About
-                </Link>
-              </li>
+return (
 
-              <li>
-                <Link
-                  href="/products"
-                  className="text-gray-600 transition hover:text-rose-600"
-                >
-                  Products
-                </Link>
-              </li>
+<footer
 
-              <li>
-                <Link
-                  href="/workshops"
-                  className="text-gray-600 transition hover:text-rose-600"
-                >
-                  Workshops
-                </Link>
-              </li>
+className="
+relative
+overflow-hidden
+border-t
+border-rose-100
+bg-gradient-to-b
+from-white
+to-rose-50
+"
 
-              <li>
-                <Link
-                  href="/gallery"
-                  className="text-gray-600 transition hover:text-rose-600"
-                >
-                  Gallery
-                </Link>
-              </li>
+>
 
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-600 transition hover:text-rose-600"
-                >
-                  Contact
-                </Link>
-              </li>
 
-            </ul>
 
-          </div>
 
-          {/* Contact */}
 
-          <div>
+<div
 
-            <h3 className="mb-5 text-lg font-semibold text-gray-900">
-              Contact
-            </h3>
+className="
+absolute
+-left-32
+top-0
+h-80
+w-80
+rounded-full
+bg-rose-100/40
+blur-3xl
+"
 
-            <div className="space-y-4 text-gray-600">
+/>
 
-              <div className="flex items-center gap-3">
-                <Phone size={18} className="text-rose-500" />
-                <span>{site.phone}</span>
-              </div>
 
-              <div className="flex items-center gap-3">
-                <Mail size={18} className="text-rose-500" />
-                <span>{site.email}</span>
-              </div>
 
-              <div className="flex items-center gap-3">
-                <MapPin size={18} className="text-rose-500" />
-                <span>{site.address}</span>
-              </div>
+<div
 
-            </div>
+className="
+absolute
+-right-32
+bottom-0
+h-80
+w-80
+rounded-full
+bg-emerald-100/40
+blur-3xl
+"
 
-          </div>
+/>
 
-          {/* Follow Us */}
 
-          <div>
 
-            <h3 className="mb-5 text-lg font-semibold text-gray-900">
-              Follow Us
-            </h3>
 
-            <div className="flex gap-4">
 
-              <a
-                href={site.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-white p-3 shadow transition hover:-translate-y-1 hover:bg-rose-500 hover:text-white"
-              >
-                <Facebook size={20} />
-              </a>
 
-              <a
-                href={site.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-white p-3 shadow transition hover:-translate-y-1 hover:bg-rose-500 hover:text-white"
-              >
-                <Instagram size={20} />
-              </a>
 
-            </div>
+<div
 
-          </div>
+className="
+relative
+mx-auto
+max-w-7xl
+px-6
+py-16
+"
 
-        </div>
+>
 
-        {/* Bottom */}
 
-        <div className="mt-16 border-t border-rose-100 pt-8 text-center text-sm text-gray-500">
 
-          © {new Date().getFullYear()}  - Yamuna&apos;s Classics.
-          All Rights Reserved.
 
-        </div>
 
-      </div>
 
-    </footer>
-  );
+<div
+
+className="
+grid
+gap-12
+md:grid-cols-2
+lg:grid-cols-4
+"
+
+>
+
+
+
+
+
+
+{/* Brand */}
+
+
+
+<div>
+
+
+<h2
+
+className="
+text-3xl
+font-bold
+text-gray-900
+"
+
+>
+
+Yamuna&apos;s Classics
+
+</h2>
+
+
+
+<p
+
+className="
+mt-5
+leading-8
+text-gray-600
+"
+
+>
+
+Handmade creations crafted with love.
+Crochet, embroidery, paper crafts,
+mehendi, baking and inspiring creative
+workshops.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Links */}
+
+
+
+<div>
+
+
+<h3
+
+className="
+mb-5
+text-lg
+font-semibold
+text-gray-900
+"
+
+>
+
+Quick Links
+
+</h3>
+
+
+
+<ul className="space-y-3">
+
+
+{quickLinks.map((link)=>(
+
+
+<li key={link.href}>
+
+
+<Link
+
+href={link.href}
+
+className="
+text-gray-600
+transition-all
+duration-300
+hover:pl-2
+hover:text-emerald-600
+"
+
+>
+
+{link.label}
+
+</Link>
+
+
+
+</li>
+
+
+))}
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Contact */}
+
+
+
+<div>
+
+
+<h3
+
+className="
+mb-5
+text-lg
+font-semibold
+text-gray-900
+"
+
+>
+
+Contact
+
+</h3>
+
+
+
+
+<div
+
+className="
+space-y-5
+text-gray-600
+"
+
+>
+
+
+
+
+<div className="flex items-center gap-3">
+
+<Phone
+
+size={18}
+
+className="text-emerald-600"
+
+/>
+
+<span>
+
+{site.phone}
+
+</span>
+
+</div>
+
+
+
+
+
+
+<div className="flex items-center gap-3">
+
+<Mail
+
+size={18}
+
+className="text-emerald-600"
+
+/>
+
+<span>
+
+{site.email}
+
+</span>
+
+</div>
+
+
+
+
+
+
+
+<div className="flex items-center gap-3">
+
+<MapPin
+
+size={18}
+
+className="text-emerald-600"
+
+/>
+
+<span>
+
+{site.address}
+
+</span>
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Social */}
+
+
+
+<div>
+
+
+<h3
+
+className="
+mb-5
+text-lg
+font-semibold
+text-gray-900
+"
+
+>
+
+Follow Us
+
+</h3>
+
+
+
+<div className="flex gap-4">
+
+
+<SocialLink href={site.instagram}>
+
+<FaInstagram size={22}/>
+
+</SocialLink>
+
+
+
+
+<SocialLink href={site.youtube}>
+
+<FaYoutube size={22}/>
+
+</SocialLink>
+
+
+
+
+
+<SocialLink
+
+href={`https://wa.me/${site.whatsapp.replace(/\D/g,"")}`}
+
+>
+
+<FaWhatsapp size={22}/>
+
+</SocialLink>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div
+
+className="
+mt-16
+border-t
+border-rose-100
+pt-8
+text-center
+"
+
+>
+
+
+<p className="text-sm text-gray-500">
+
+© {new Date().getFullYear()} - Yamuna&apos;s Classics.
+All Rights Reserved.
+
+</p>
+
+
+
+<p className="mt-2 text-xs text-gray-400">
+
+Handmade with ❤️ in India
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</footer>
+
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+function SocialLink({
+
+href,
+
+children,
+
+}:{
+
+href:string;
+
+children:React.ReactNode;
+
+}){
+
+
+return (
+
+<a
+
+href={href}
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+className="
+flex
+h-12
+w-12
+items-center
+justify-center
+rounded-full
+bg-white
+text-pink-600
+shadow-md
+transition-all
+duration-500
+hover:-translate-y-1
+hover:scale-110
+hover:bg-emerald-600
+hover:text-white
+hover:shadow-xl
+"
+
+>
+
+{children}
+
+</a>
+
+
+);
+
+
 }

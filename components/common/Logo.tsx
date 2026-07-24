@@ -9,25 +9,70 @@ export default function Logo() {
       href="/"
       className="group flex items-center gap-4"
     >
-      <div className="overflow-hidden rounded-2xl bg-white p-1 shadow-md transition-all duration-300 group-hover:shadow-xl">
+      {/* Logo */}
+
+      <div
+        className="
+          overflow-hidden
+          rounded-3xl
+          border
+          border-white/70
+          bg-white/90
+          p-2
+          shadow-lg
+          backdrop-blur
+          transition-all
+          duration-500
+          group-hover:-translate-y-1
+          group-hover:rotate-1
+          group-hover:scale-105
+          group-hover:shadow-2xl
+          group-hover:shadow-emerald-200/60
+        "
+      >
         <Image
           src="/logo/yamunas-classics-logo.png"
           alt="Yamuna's Classics"
-          width={70}
-          height={70}
+          width={72}
+          height={72}
           priority
-          className="transition-transform duration-500 group-hover:scale-105"
+          className="
+            transition-transform
+            duration-500
+            group-hover:scale-110
+          "
         />
       </div>
 
-      <div className="hidden sm:block">
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 transition-colors duration-300 group-hover:text-emerald-600">
-          Yamuna&apos;s Classics
-        </h1>
+      {/* Text */}
 
-        <p className="text-sm uppercase tracking-[0.2em] text-emerald-600">
+      <div className="hidden sm:block">
+
+        <h1
+className="
+text-2xl
+tracking-tight
+font-bold
+font-body
+text-gray-900
+"
+>
+Yamuna&apos;s Classics
+</h1>
+
+        <p
+          className="
+            mt-1
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.35em]
+            text-emerald-600
+          "
+        >
           Handmade with Love
         </p>
+
       </div>
     </Link>
   );

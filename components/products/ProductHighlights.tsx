@@ -12,7 +12,7 @@ interface ProductHighlightsProps {
 export default function ProductHighlights({
   customizable,
 }: ProductHighlightsProps) {
-  const items = [
+  const cart = [
     {
       icon: Heart,
       title: "Handmade with Love",
@@ -35,7 +35,7 @@ export default function ProductHighlights({
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      {items.map((item) => (
+      {cart.map((item) => (
         <div
           key={item.title}
           className="rounded-xl border border-pink-100 bg-pink-50 p-4"

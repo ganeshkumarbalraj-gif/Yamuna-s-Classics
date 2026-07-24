@@ -2,17 +2,19 @@
 
 import { useMemo, useState } from "react";
 
-import GalleryGrid from "./GalleryGrid";
 import GalleryFilters from "./GalleryFilters";
+import GalleryGrid from "./GalleryGrid";
 import GalleryLightbox from "./GalleryLightbox";
 
 import GalleryService from "@/services/GalleryService";
+import SectionTitle from "@/components/common/SectionTitle";
 
 export default function GallerySection() {
   const [selectedCategory, setSelectedCategory] =
     useState("All");
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] =
+    useState(false);
 
   const [currentIndex, setCurrentIndex] =
     useState(0);
@@ -60,21 +62,46 @@ export default function GallerySection() {
   }
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-rose-50/30 to-white py-24">
 
-      <GalleryFilters
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-      />
+      {/* Decorative Background */}
 
-      <GalleryGrid
-        items={filteredItems}
-        onImageClick={openLightbox}
-      />
+      <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-pink-100/40 blur-3xl" />
+
+      <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-emerald-100/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
+
+        <SectionTitle
+          eyebrow="Our Handmade Collection"
+          name="Creative Gallery"
+          description="Browse a collection of our handcrafted creations, workshop moments and beautiful handmade artwork made with love."
+          center
+        />
+
+        <div className="mt-12">
+
+          <GalleryFilters
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+          />
+
+        </div>
+
+        <div className="mt-14">
+
+          <GalleryGrid
+            cart={filteredItems}
+            onImageClick={openLightbox}
+          />
+
+        </div>
+
+      </div>
 
       <GalleryLightbox
-        items={filteredItems}
+        cart={filteredItems}
         currentIndex={currentIndex}
         isOpen={isOpen}
         onClose={closeLightbox}

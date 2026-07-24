@@ -21,12 +21,12 @@ class WishlistService {
     }
   }
 
-  save(items: string[]) {
+  save(cart: string[]) {
     if (typeof window === "undefined") return;
 
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify(items)
+      JSON.stringify(cart)
     );
 
     window.dispatchEvent(
@@ -39,20 +39,20 @@ class WishlistService {
   }
 
   add(productId: string) {
-    const items = this.getItems();
+    const cart = this.getItems();
 
-    if (!items.includes(productId)) {
-      items.push(productId);
-      this.save(items);
+    if (!cart.includes(productId)) {
+      cart.push(productId);
+      this.save(cart);
     }
   }
 
   remove(productId: string) {
-    const items = this.getItems().filter(
+    const cart = this.getItems().filter(
       (id) => id !== productId
     );
 
-    this.save(items);
+    this.save(cart);
   }
 
   toggle(productId: string) {

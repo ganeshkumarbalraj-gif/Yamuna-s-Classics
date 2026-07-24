@@ -3,7 +3,6 @@ import { site } from "@/data/site";
 export default function LocalBusinessSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
-
     "@type": "LocalBusiness",
 
     name: site.name,
@@ -29,7 +28,7 @@ export default function LocalBusinessSchema() {
     sameAs: [
       site.instagram,
       site.youtube,
-      site.facebook,
+      `https://wa.me/${site.whatsapp.replace(/\D/g, "")}`,
     ].filter(Boolean),
   };
 

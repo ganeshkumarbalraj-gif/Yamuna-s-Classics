@@ -1,9 +1,9 @@
-import { BaseEntity } from "./common";
-
-export interface GalleryItem extends BaseEntity {
-  image: string;
-
+export interface GalleryItem {
+  id: string;
+  slug: string;
+  name: string;
   category: string;
-
-  description?: string;
+  image: string;
+  description: string;
+  featured: boolean;
 }

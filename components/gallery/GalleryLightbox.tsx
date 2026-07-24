@@ -5,7 +5,7 @@ import Image from "next/image";
 import { GalleryItem } from "@/types";
 
 interface GalleryLightboxProps {
-  items: GalleryItem[];
+  cart: GalleryItem[];
   currentIndex: number;
   isOpen: boolean;
   onClose: () => void;
@@ -14,18 +14,18 @@ interface GalleryLightboxProps {
 }
 
 export default function GalleryLightbox({
-  items,
+  cart,
   currentIndex,
   isOpen,
   onClose,
   onPrevious,
   onNext,
 }: GalleryLightboxProps) {
-  if (!isOpen || items.length === 0) {
+  if (!isOpen || cart.length === 0) {
     return null;
   }
 
-  const item = items[currentIndex];
+  const item = cart[currentIndex];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-6">

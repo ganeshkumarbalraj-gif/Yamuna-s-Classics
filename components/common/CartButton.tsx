@@ -1,35 +1,90 @@
 "use client";
 
+import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 
-import Button from "@/components/ui/Button";
-import useCart from "@/hooks/useCart";
-import { Product } from "@/types";
+import { useCart } from "@/context/CartContext";
 
-interface CartButtonProps {
-  product: Product;
-  className?: string;
-}
 
-export default function CartButton({
-  product,
-  className = "",
-}: CartButtonProps) {
-  const { add } = useCart();
 
-  const handleClick = () => {
-    add(product);
-  };
+export default function CartButton() {
+
+
+  const {
+    itemCount,
+  } = useCart();
+
+
+
 
   return (
-    <Button
-      type="button"
-      onClick={handleClick}
-      className={className}
-    >
-      <ShoppingCart className="mr-2 h-5 w-5" />
 
-      Add to Cart
-    </Button>
+    <Link
+
+      href="/cart"
+
+      className="
+      relative
+      flex
+      h-12
+      w-12
+      items-center
+      justify-center
+      rounded-full
+      bg-white
+      text-gray-700
+      shadow-md
+      transition-all
+      duration-300
+      hover:-translate-y-1
+      hover:bg-emerald-600
+      hover:text-white
+      "
+
+      aria-label="Shopping Cart"
+
+    >
+
+
+
+      <ShoppingCart size={22} />
+
+
+
+
+
+      {itemCount > 0 && (
+
+        <span
+
+          className="
+          absolute
+          -right-1
+          -top-1
+          flex
+          h-6
+          w-6
+          items-center
+          justify-center
+          rounded-full
+          bg-pink-600
+          text-xs
+          font-bold
+          text-white
+          "
+
+        >
+
+          {itemCount}
+
+        </span>
+
+      )}
+
+
+
+    </Link>
+
   );
+
 }

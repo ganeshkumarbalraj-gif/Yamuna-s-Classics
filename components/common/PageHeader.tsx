@@ -12,7 +12,7 @@ export default function PageHeader({
   action,
 }: PageHeaderProps) {
   return (
-    <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+    <div className="mb-12 flex flex-col cart-start justify-between gap-6 md:flex-row md:items-center">
       <div>
         <h1 className="text-4xl font-bold text-gray-900">
           {title}

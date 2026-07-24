@@ -5,7 +5,7 @@ export const homeData = {
     name: "Beautiful Handmade Creations Crafted Just For You",
 
     subtitle:
-      "Discover handcrafted crochet, embroidery, paper crafts, gift hampers, baking, mehendi and creative workshops from Yamuna&apos;s Classics.",
+      "Discover handcrafted crochet, embroidery, paper crafts, gift hampers, baking, mehendi and creative workshops from Yamuna's Classics.",
 
     primaryButton: {
       text: "Explore Products",

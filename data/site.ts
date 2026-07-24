@@ -40,22 +40,20 @@ export const site = {
   youtube:
     "https://youtube.com/@YamunasClassics",
 
-  facebook: "",
-
-  // =====================================================
+    // =====================================================
   // Business Statistics
   // =====================================================
 
   stats: {
-    happyCustomers: "500+",
+    happyCustomers: "50+",
 
-    workshopStudents: "120+",
+    workshopStudents: "20+",
 
-    handmadeProducts: "1000+",
+    handmadeProducts: "100+",
 
     yearsExperience: "5+",
 
-    averageRating: "5★",
+    averageRating: "4★",
 
     handmade: "100%",
   },
@@ -77,7 +75,7 @@ export const site = {
 
     saturday: "10:00 AM - 7:00 PM",
 
-    sunday: "Closed",
+    sunday: "10:00 AM - 5:00 PM",
   },
 
   // =====================================================

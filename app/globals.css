@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
+
 /* ==========================================================
    Theme
 ========================================================== */
 
 @theme {
-  --font-sans: var(--font-sans);
 
-  --color-background: #ffffff;
-  --color-foreground: #1f2937;
+  --font-heading: Arial, Helvetica, sans-serif;
+
+  --font-body: Arial, Helvetica, sans-serif;
+
 }
 
 /* ==========================================================
@@ -19,18 +21,28 @@ html {
   scroll-behavior: smooth;
 }
 
+
 body {
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  background: var(--color-background);
-  color: var(--color-foreground);
+
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+
+  background: #ffffff;
+
+  color: #1f2937;
+
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
+
   -moz-osx-font-smoothing: grayscale;
+
 }
 
+
 /* ==========================================================
-   Headings
+   Typography
 ========================================================== */
+
 
 h1,
 h2,
@@ -38,61 +50,314 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+
+  font-weight:700;
+
+  letter-spacing:-0.02em;
+
 }
+
+
+p,
+span,
+button,
+input,
+textarea,
+label {
+
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+
+}
+
+
+/* Font Utility Classes */
+
+.font-body {
+
+  font-family: var(--font-playfair);
+
+}
+
+
+.font-body {
+
+  font-family: var(--font-poppins);
+
+}
+
+
 
 /* ==========================================================
    Links
 ========================================================== */
 
+
 a {
-  transition: all 0.25s ease;
+
+  transition:
+    color .3s ease,
+    transform .3s ease;
+
 }
+
+
 
 /* ==========================================================
    Buttons
 ========================================================== */
 
+
 button {
-  cursor: pointer;
+
+  cursor:pointer;
+
 }
+
+
+/* Common button hover behaviour */
+
+.btn {
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  height:3rem;
+
+  padding-left:1.5rem;
+
+  padding-right:1.5rem;
+
+  border-radius:9999px;
+
+  font-family:var(--font-poppins);
+
+  font-weight:600;
+
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    transform .3s ease,
+    box-shadow .3s ease;
+
+}
+
+
+.btn:hover {
+
+  background:#059669;
+
+  color:white;
+
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
+
+}
+
+
+.btn:active {
+
+  transform:scale(.96);
+
+}
+
+
+
+/* ==========================================================
+   Badges
+========================================================== */
+
+
+.badge {
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:.35rem .85rem;
+
+  border-radius:9999px;
+
+  font-size:.75rem;
+
+  font-weight:600;
+
+  line-height:1;
+
+}
+
+
+
+/* Workshop Levels */
+
+
+.badge-beginner {
+
+  background:#dcfce7;
+
+  color:#15803d;
+
+}
+
+
+
+.badge-intermediate {
+
+  background:#fef3c7;
+
+  color:#b45309;
+
+}
+
+
+
+.badge-advanced {
+
+  background:#fee2e2;
+
+  color:#b91c1c;
+
+}
+
+
 
 /* ==========================================================
    Images
 ========================================================== */
 
+
 img {
-  max-width: 100%;
-  height: auto;
+
+  max-width:100%;
+
+  height:auto;
+
 }
+
+
 
 /* ==========================================================
    Selection
 ========================================================== */
 
+
 ::selection {
-  background: #ec4899;
-  color: white;
+
+  background:#059669;
+
+  color:white;
+
 }
+
+
 
 /* ==========================================================
-   Scrollbar (Chrome/Edge)
+   Scrollbar
 ========================================================== */
 
+
 ::-webkit-scrollbar {
-  width: 10px;
+
+  width:10px;
+
 }
+
 
 ::-webkit-scrollbar-track {
-  background: #fdf2f8;
+
+  background:#ecfdf5;
+
 }
+
 
 ::-webkit-scrollbar-thumb {
-  background: #ec4899;
-  border-radius: 9999px;
+
+  background:#10b981;
+
+  border-radius:9999px;
+
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #db2777;
+
+  background:#059669;
+
+}
+
+
+
+/* ==========================================================
+   Layout Utilities
+========================================================== */
+
+
+.container {
+
+  width:100%;
+
+  margin-left:auto;
+
+  margin-right:auto;
+
+  padding-left:1.5rem;
+
+  padding-right:1.5rem;
+
+}
+
+
+
+section {
+
+  scroll-margin-top:90px;
+
+}
+
+
+
+/* ==========================================================
+   Form Elements
+========================================================== */
+
+
+input,
+textarea,
+select {
+
+  font-family:var(--font-poppins);
+
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+
+  outline:none;
+
+  border-color:#10b981;
+
+  box-shadow:0 0 0 3px rgba(16,185,129,.15);
+
+}
+
+.input-style {
+  width:100%;
+  border:1px solid #e5e7eb;
+  border-radius:1rem;
+  padding:0.875rem 1rem;
+  font-family:var(--font-poppins), Arial, Helvetica, sans-serif;
+  outline:none;
+  transition:all .3s ease;
+}
+
+.input-style:focus {
+  border-color:#ec4899;
+  box-shadow:0 0 0 3px rgba(236,72,153,.15);
 }

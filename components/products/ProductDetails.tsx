@@ -12,11 +12,11 @@ export default function ProductDetails({
   product,
 }: ProductDetailsProps) {
   return (
-    <section className="space-y-20">
+    <section className="space-y-24">
 
       {/* Main Product Layout */}
 
-      <div className="grid gap-16 lg:grid-cols-2">
+      <div className="grid cart-start gap-16 lg:grid-cols-[1.05fr_0.95fr]">
 
         <ProductGallery
           images={product.images}
@@ -29,7 +29,11 @@ export default function ProductDetails({
 
       </div>
 
-      {/* Product Details Tabs */}
+      {/* Divider */}
+
+      <div className="mx-auto h-px w-40 bg-gradient-to-r from-transparent via-pink-300 to-transparent" />
+
+      {/* Product Tabs */}
 
       <ProductTabs
         product={product}

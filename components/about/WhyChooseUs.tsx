@@ -1,6 +1,6 @@
 import { CheckCircle } from "lucide-react";
 
-const items = [
+const cart = [
   "100% Handmade & Customized Products",
   "High Quality Materials & Finishing",
   "Creative & Unique Designs",
@@ -19,7 +19,7 @@ export default function WhyChooseUs() {
 
       <div className="space-y-5">
 
-        {items.map((item) => (
+        {cart.map((item) => (
           <div
             key={item}
             className="flex items-center gap-4 text-lg"

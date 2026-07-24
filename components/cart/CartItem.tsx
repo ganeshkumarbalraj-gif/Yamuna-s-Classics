@@ -3,109 +3,224 @@
 import Image from "next/image";
 import { Minus, Plus, Trash2 } from "lucide-react";
 
-import Button from "@/components/ui/Button";
-import useCart from "@/hooks/useCart";
-import { CartItem as CartItemType } from "@/types/cart";
+import { CartItem as CartItemType } from "@/context/CartContext";
+import { useCart } from "@/context/CartContext";
 
-interface CartItemProps {
+
+interface Props {
   item: CartItemType;
 }
 
+
 export default function CartItem({
   item,
-}: CartItemProps) {
+}: Props) {
+
+
   const {
-    increase,
-    decrease,
-    remove,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
   } = useCart();
+
 
   const product = item.product;
 
+
   return (
-    <div className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md md:flex-row">
-      {/* Product Image */}
-      <div className="relative h-36 w-36 overflow-hidden rounded-2xl bg-gray-100">
+
+    <div
+      className="
+      flex
+      gap-6
+      rounded-3xl
+      border
+      border-gray-100
+      bg-white
+      p-6
+      shadow-sm
+      transition-all
+      duration-300
+      hover:shadow-lg
+      "
+    >
+
+
+      <div
+        className="
+        relative
+        h-28
+        w-28
+        overflow-hidden
+        rounded-2xl
+        bg-gray-100
+        "
+      >
+
         <Image
-          src={product.images[0] || "/images/placeholder.webp"}
+
+          src={
+            product.images[0] ||
+            "/images/placeholder-product.jpg"
+          }
+
           alt={product.name}
+
           fill
-          sizes="144px"
+
           className="object-cover"
+
         />
+
       </div>
 
-      {/* Product Details */}
-      <div className="flex flex-1 flex-col justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">
-            {product.name}
-          </h2>
 
-          <p className="mt-2 text-sm text-gray-500">
-            {product.category}
-          </p>
 
-          <p className="mt-3 text-lg font-semibold text-emerald-600">
-  {product.price
-    ? `₹${product.price.toLocaleString()}`
-    : "Price on Request"}
-</p>
-        </div>
 
-        {/* Controls */}
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-          {/* Quantity */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => decrease(product.id)}
-              className="rounded-full border p-2 transition hover:bg-gray-100"
-              aria-label="Decrease quantity"
-            >
-              <Minus size={18} />
-            </button>
+      <div className="flex flex-1 flex-col">
 
-            <span className="min-w-[40px] text-center text-lg font-semibold">
-              {item.quantity}
-            </span>
 
-            <button
-              type="button"
-              onClick={() => increase(product.id)}
-              className="rounded-full border p-2 transition hover:bg-gray-100"
-              aria-label="Increase quantity"
-            >
-              <Plus size={18} />
-            </button>
-          </div>
+        <h3
+          className="
+          font-body
+          text-xl
+          font-bold
+          text-gray-900
+          "
+        >
 
-          {/* Total */}
-          <div className="text-right">
-  <p className="text-sm text-gray-500">
-    Total
-  </p>
+          {product.name}
 
-  <p className="text-2xl font-bold text-emerald-600">
-    {product.price
-      ? `₹${(
-          product.price * item.quantity
-        ).toLocaleString()}`
-      : "Enquire"}
-  </p>
-</div>
+        </h3>
 
-          {/* Remove */}
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => remove(product.id)}
+
+
+        <p className="text-sm text-gray-500">
+
+          {product.category}
+
+        </p>
+
+
+
+        <p
+          className="
+          mt-3
+          text-lg
+          font-bold
+          text-emerald-600
+          "
+        >
+
+          ₹{(product.price ?? 0).toLocaleString()}
+
+        </p>
+
+
+
+
+        <div className="mt-4 flex items-center gap-3">
+
+
+          <button
+
+            onClick={() =>
+              decreaseQuantity(product.id)
+            }
+
+            className="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-gray-300
+            transition-all
+            duration-300
+            hover:border-emerald-600
+            hover:bg-emerald-600
+            hover:text-white
+            "
+
           >
-            <Trash2 className="mr-2 h-4 w-4" />
-            Remove
-          </Button>
+
+            <Minus size={16}/>
+
+          </button>
+
+
+
+          <span className="font-semibold">
+
+            {item.quantity}
+
+          </span>
+
+
+
+
+          <button
+
+            onClick={() =>
+              increaseQuantity(product.id)
+            }
+
+            className="
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-gray-300
+            transition-all
+            duration-300
+            hover:border-emerald-600
+            hover:bg-emerald-600
+            hover:text-white
+            "
+
+          >
+
+            <Plus size={16}/>
+
+          </button>
+
+
         </div>
+
+
       </div>
+
+
+
+
+      <button
+
+        onClick={() =>
+          removeFromCart(product.id)
+        }
+
+        className="
+        self-start
+        text-red-500
+        transition-all
+        duration-300
+        hover:scale-110
+        hover:text-red-700
+        "
+
+      >
+
+        <Trash2 size={22}/>
+
+      </button>
+
+
     </div>
+
   );
 }

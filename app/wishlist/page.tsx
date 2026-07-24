@@ -13,7 +13,7 @@ export default function WishlistPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-emerald-50">
       <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+        <div className="mb-12 flex flex-col cart-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <h1 className="text-4xl font-bold text-gray-900">
               My Wishlist ❤️

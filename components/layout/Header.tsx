@@ -1,115 +1,317 @@
 "use client";
 
 import Link from "next/link";
-
-import Logo from "@/components/common/Logo";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import CartIcon from "@/components/common/CartIcon";
-import MobileMenu from "@/components/layout/MobileMenu";
 
-export default function Header() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-rose-100 bg-white/95 backdrop-blur-md shadow-sm">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
-        {/* Logo */}
 
-        <Logo />
+const navLinks = [
 
-        {/* Desktop Navigation */}
+  {
+    href:"/",
+    label:"Home",
+  },
 
-        <nav className="hidden items-center gap-8 lg:flex">
+  {
+    href:"/about",
+    label:"About",
+  },
 
-          <Link
-            href="/"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            Home
-          </Link>
+  {
+    href:"/products",
+    label:"Products",
+  },
 
-          <Link
-            href="/about"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            About
-          </Link>
+  {
+    href:"/workshops",
+    label:"Workshops",
+  },
 
-          <Link
-            href="/products"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            Products
-          </Link>
+  {
+    href:"/gallery",
+    label:"Gallery",
+  },
 
-          <Link
-            href="/workshops"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            Workshops
-          </Link>
+  {
+    href:"/contact",
+    label:"Contact",
+  },
 
-          <Link
-            href="/gallery"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            Gallery
-          </Link>
+];
 
-          <Link
-            href="/faq"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            FAQ
-          </Link>
 
-          <Link
-            href="/contact"
-            className="font-medium text-gray-700 transition-colors hover:text-rose-500"
-          >
-            Contact
-          </Link>
 
-        </nav>
 
-        {/* Right Side */}
 
-        <div className="flex items-center gap-4">
+export default function Header(){
 
-          <CartIcon />
+const pathname = usePathname();
 
-          <Link
-            href="/contact"
-            className="
-              hidden
-              rounded-xl
-              bg-gradient-to-r
-              from-rose-500
-              to-pink-500
-              px-6
-              py-3
-              font-semibold
-              text-white
-              shadow-md
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:from-rose-600
-              hover:to-pink-600
-              hover:shadow-xl
-              lg:inline-flex
-            "
-          >
-            Enquire
-          </Link>
 
-          {/* Mobile Navigation */}
 
-          <div className="lg:hidden">
-            <MobileMenu />
-          </div>
 
-        </div>
+return (
 
-      </div>
-    </header>
-  );
+<header
+
+className="
+sticky
+top-0
+z-50
+border-b
+border-rose-100
+bg-white/95
+backdrop-blur-xl
+shadow-sm
+transition-all
+duration-300
+"
+
+>
+
+
+
+
+
+<div
+
+className="
+mx-auto
+flex
+h-20
+max-w-7xl
+items-center
+justify-between
+px-6
+"
+
+>
+
+
+
+
+
+
+
+
+{/* Logo */}
+
+
+
+<Link
+
+href="/"
+
+className="
+flex
+items-center
+gap-3
+"
+
+>
+
+
+<Image
+
+src="/logo/yamunas-classics-logo.png"
+
+alt="Yamuna's Classics"
+
+width={64}
+height={64}
+
+className="
+rounded-full
+transition-transform
+duration-300
+hover:scale-105
+"
+
+priority
+
+/>
+
+
+
+<div>
+
+
+<h1
+
+className="
+text-2xl
+tracking-tight
+font-bold
+text-gray-900
+"
+
+>
+
+Yamuna&apos;s Classics
+
+</h1>
+
+
+<p
+
+className="
+text-sm
+tracking-wide
+text-pink-600
+"
+
+>
+
+Handmade with Love
+
+</p>
+
+
+</div>
+
+
+</Link>
+
+
+
+
+
+
+
+
+
+{/* Desktop Menu */}
+
+
+
+<nav
+
+className="
+hidden
+items-center
+gap-10
+lg:flex
+"
+
+>
+
+
+{navLinks.map((link)=>(
+
+
+<Link
+
+key={link.href}
+
+href={link.href}
+
+className={`
+
+relative
+font-medium
+transition-all
+duration-300
+
+${
+pathname===link.href
+
+? "text-emerald-600"
+
+: "text-gray-700 hover:text-emerald-600"
+
+}
+
+after:absolute
+after:left-0
+after:-bottom-2
+after:h-0.5
+after:w-0
+after:bg-emerald-600
+after:transition-all
+after:duration-300
+
+hover:after:w-full
+
+${
+pathname===link.href
+
+? "after:w-full"
+
+: ""
+
+}
+
+`}
+
+>
+
+{link.label}
+
+</Link>
+
+
+))}
+
+
+
+<CartIcon />
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+{/* Mobile Menu Button */}
+
+<div
+className="
+flex
+items-center
+"
+>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* Mobile Navigation */}
+
+
+
+
+
+
+
+</header>
+
+
+);
+
+
 }

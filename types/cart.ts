@@ -6,7 +6,7 @@ export interface CartItem {
 }
 
 export interface CartSummary {
-  items: CartItem[];
+  cart: CartItem[];
 
   totalItems: number;
 
